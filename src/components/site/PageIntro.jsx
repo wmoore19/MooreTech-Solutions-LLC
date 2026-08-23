@@ -1,4 +1,4 @@
-export default function PageIntro({ eyebrow, title, description, children }) {
+export default function PageIntro({ eyebrow, title, description, children = null }) {
   return (
     <section className="page-intro">
       <div className="shell page-intro-inner">
