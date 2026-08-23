@@ -1,6 +1,7 @@
 import { Github, Mail, MessageSquareText, Phone } from "lucide-react";
 import PageIntro from "@/components/site/PageIntro";
-import { company, customBuildEmail } from "@/siteData";
+import InquiryForm from "@/components/site/InquiryForm";
+import { company } from "@/siteData";
 
 export default function Contact() {
   return (
@@ -8,12 +9,18 @@ export default function Contact() {
       <PageIntro
         eyebrow="Contact"
         title="Start with a text, email, or short description."
-        description="Texting is encouraged. Tell us whether you are asking about Ironline Office, a custom build, careers, or something else."
+        description={`Texting is encouraged. Tell us whether you are asking about Ironline Office, a custom build, a partnership, careers, or something else. ${company.responseTime}.`}
       />
 
       <section className="section">
         <div className="shell contact-grid">
-          <a className="contact-card featured" href={company.smsHref}>
+          <a
+            className="contact-card featured"
+            href={company.smsHref}
+            data-track-event="company_text_clicked"
+            data-track-placement="contact_card"
+            data-track-destination="sms"
+          >
             <MessageSquareText />
             <span>Recommended</span>
             <h2>Text us</h2>
@@ -21,14 +28,26 @@ export default function Contact() {
             <small>Best for a quick question or first conversation.</small>
           </a>
 
-          <a className="contact-card" href={"mailto:" + company.email}>
+          <a
+            className="contact-card"
+            href={"mailto:" + company.email}
+            data-track-event="company_email_clicked"
+            data-track-placement="contact_card"
+            data-track-destination="email"
+          >
             <Mail />
             <span>Email</span>
             <h2>{company.email}</h2>
             <p>Product, company, and general inquiries.</p>
           </a>
 
-          <a className="contact-card" href={company.phoneHref}>
+          <a
+            className="contact-card"
+            href={company.phoneHref}
+            data-track-event="company_call_clicked"
+            data-track-placement="contact_card"
+            data-track-destination="phone"
+          >
             <Phone />
             <span>Call</span>
             <h2>{company.phoneDisplay}</h2>
@@ -40,6 +59,9 @@ export default function Contact() {
             href={company.githubUrl}
             target="_blank"
             rel="noreferrer"
+            data-track-event="company_github_clicked"
+            data-track-placement="contact_card"
+            data-track-destination="github"
           >
             <Github />
             <span>GitHub</span>
@@ -50,17 +72,11 @@ export default function Contact() {
       </section>
 
       <section className="section section-soft">
-        <div className="shell inquiry-panel">
-          <div>
-            <span className="eyebrow">Custom build inquiries</span>
-            <h2>A useful first message can be brief.</h2>
-          </div>
-          <div>
-            <p>Include what happens today, what is slowing the work down, and who would use the solution.</p>
-            <a className="button" href={customBuildEmail}>
-              <Mail size={18} /> Email a custom build request
-            </a>
-          </div>
+        <div className="shell">
+          <InquiryForm
+            title="Send a structured inquiry"
+            description="Choose the topic and share enough context for us to route your request. Please do not include passwords, payment details, or other sensitive information."
+          />
         </div>
       </section>
     </>
