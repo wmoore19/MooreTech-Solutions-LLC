@@ -1,5 +1,6 @@
-import { ArrowRight, Check, Mail, MessageSquareText, X } from "lucide-react";
+import { ArrowRight, Check, FileCheck2, Mail, MessageSquareText, ShieldCheck, X } from "lucide-react";
 import PageIntro from "@/components/site/PageIntro";
+import InquiryForm from "@/components/site/InquiryForm";
 import { company, customBuildEmail } from "@/siteData";
 
 const steps = [
@@ -18,10 +19,22 @@ export default function CustomBuilds() {
         description="MooreTech considers focused custom software requests when the problem, users, and business value are clear."
       >
         <div className="intro-actions">
-          <a className="button" href={company.smsHref}>
+          <a
+            className="button"
+            href={company.smsHref}
+            data-track-event="company_text_clicked"
+            data-track-placement="custom_build_intro"
+            data-track-destination="sms"
+          >
             <MessageSquareText size={18} /> Text your idea
           </a>
-          <a className="button button-secondary" href={customBuildEmail}>
+          <a
+            className="button button-secondary"
+            href={customBuildEmail}
+            data-track-event="company_email_clicked"
+            data-track-placement="custom_build_intro"
+            data-track-destination="email"
+          >
             <Mail size={18} /> Email a request
           </a>
         </div>
@@ -69,6 +82,32 @@ export default function CustomBuilds() {
       </section>
 
       <section className="section">
+        <div className="shell">
+          <div className="section-heading">
+            <span className="eyebrow">Before paid work begins</span>
+            <h2>Clear expectations protect both sides.</h2>
+          </div>
+          <div className="engagement-grid">
+            <article className="engagement-card">
+              <MessageSquareText />
+              <h3>No-cost fit review</h3>
+              <p>An initial conversation helps determine whether the problem and MooreTech are a sensible match.</p>
+            </article>
+            <article className="engagement-card">
+              <FileCheck2 />
+              <h3>Written scope</h3>
+              <p>Paid work begins only after the first version, responsibilities, timing, and commercial terms are documented.</p>
+            </article>
+            <article className="engagement-card">
+              <ShieldCheck />
+              <h3>Ownership and operations</h3>
+              <p>Code, data, hosting, access, third-party services, handoff, and ongoing support are agreed in writing for the project.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-soft">
         <div className="shell fit-split">
           <article className="fit-panel good-fit">
             <Check />
@@ -93,14 +132,31 @@ export default function CustomBuilds() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="shell">
+          <InquiryForm
+            defaultType="custom_build"
+            showType={false}
+            title="Request an initial project review"
+            description={`Tell us what is happening today and what you want to improve. ${company.responseTime}.`}
+          />
+        </div>
+      </section>
+
       <section className="section section-cta">
         <div className="shell cta-panel">
           <div>
-            <span className="eyebrow">Request a conversation</span>
+            <span className="eyebrow">Prefer a quick start?</span>
             <h2>Start with the problem, not a polished specification.</h2>
-            <p>A few sentences by text or email are enough for an initial review.</p>
+            <p>A few sentences by text are enough for an initial review.</p>
           </div>
-          <a className="button button-light" href={company.smsHref}>
+          <a
+            className="button button-light"
+            href={company.smsHref}
+            data-track-event="company_text_clicked"
+            data-track-placement="custom_build_cta"
+            data-track-destination="sms"
+          >
             Text {company.phoneDisplay} <ArrowRight size={18} />
           </a>
         </div>
