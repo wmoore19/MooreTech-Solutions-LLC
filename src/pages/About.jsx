@@ -1,6 +1,6 @@
 import { Compass, Handshake, ShieldCheck } from "lucide-react";
 import PageIntro from "@/components/site/PageIntro";
-import { company } from "@/siteData";
+import { company, leadership } from "@/siteData";
 
 const values = [
   {
@@ -26,7 +26,7 @@ export default function About() {
       <PageIntro
         eyebrow="About MooreTech"
         title="A small technology company building for practical work."
-        description={`MooreTech Solutions LLC was established in ${company.founded} in Northeast Arkansas. We create software products and selected custom systems for businesses that need clearer, more connected operations.`}
+        description={`MooreTech Solutions LLC was established in ${company.founded} in Northeast Arkansas. We create software products and selected custom systems for businesses across the United States that need clearer, more connected operations.`}
       />
 
       <section className="section">
@@ -46,11 +46,39 @@ export default function About() {
               everyday flow of service work. Our custom work follows the same
               principle—understand the operation first, then build only what helps.
             </p>
+            <p className="service-area-note">
+              Based in {company.location} · {company.serviceArea}
+            </p>
           </div>
         </div>
       </section>
 
       <section className="section section-soft">
+        <div className="shell">
+          <div className="section-heading">
+            <span className="eyebrow">Leadership</span>
+            <h2>The people accountable for the work.</h2>
+            <p>
+              MooreTech is deliberately small. Product decisions, customer feedback,
+              and project conversations stay close to the people building the company.
+            </p>
+          </div>
+          <div className="leadership-grid">
+            {leadership.map((leader) => (
+              <article className="leader-card" key={leader.name}>
+                <div className="leader-avatar" aria-hidden="true">{leader.initials}</div>
+                <div>
+                  <h3>{leader.name}</h3>
+                  <span className="leader-role">{leader.role}</span>
+                  <p>{leader.bio}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="shell">
           <div className="section-heading">
             <span className="eyebrow">What guides us</span>
