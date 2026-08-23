@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Github, Menu, MessageSquareText, X } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import logoUrl from "@/assets/mooretech-logo.webp";
 import { company, navigation } from "@/siteData";
 
 export default function SiteHeader() {
@@ -18,7 +19,7 @@ export default function SiteHeader() {
       </a>
       <div className="shell nav-shell">
         <Link className="brand" to="/" aria-label="MooreTech Solutions home">
-          <img src="/mooretech-logo.webp" alt="MooreTech Solutions LLC" />
+          <img src={logoUrl} alt="MooreTech Solutions LLC" />
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
