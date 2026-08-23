@@ -20,7 +20,7 @@ export default function Products() {
       />
 
       <section className="section">
-        <div className="shell product-page-card">
+        <div className="shell product-page-card ironline-showcase">
           <div className="product-page-main">
             <span className="product-badge">Available now</span>
             <h2>{ironline.name}</h2>
