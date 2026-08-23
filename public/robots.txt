@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://mooretech-solutions-llc.base44.app/sitemap.xml
