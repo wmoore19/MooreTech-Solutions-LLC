@@ -9,6 +9,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoUrl from "@/assets/mooretech-logo.webp";
 import { company, customBuildEmail, ironline } from "@/siteData";
 
 const principles = [
@@ -60,7 +61,7 @@ export default function Home() {
 
           <div className="brand-panel">
             <div className="brand-panel-glow" aria-hidden="true" />
-            <img src="/mooretech-logo.webp" alt="MooreTech Solutions LLC" />
+            <img src={logoUrl} alt="MooreTech Solutions LLC" />
             <div className="brand-panel-list">
               <div>
                 <span>01</span>
