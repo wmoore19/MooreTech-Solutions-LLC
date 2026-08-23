@@ -109,7 +109,7 @@ export default function Home() {
             </p>
           </div>
 
-          <article className="product-feature">
+          <article className="product-feature ironline-showcase">
             <div className="product-copy">
               <div className="product-badge">Available now</div>
               <h3>{ironline.name}</h3>
@@ -147,7 +147,24 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="product-side">
+            <div className="product-side ironline-product-side">
+              <a
+                className="ironline-preview-link"
+                href={ironline.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Visit the Ironline Office website"
+                data-track-event="ironline_website_clicked"
+                data-track-placement="home_product_preview"
+                data-track-destination="ironline"
+              >
+                <img
+                  src={ironline.socialImageUrl}
+                  alt="Ironline Office product preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
               <span className="small-label">Designed around</span>
               <ul className="check-list">
                 <li><Check /> Customers and requests</li>
