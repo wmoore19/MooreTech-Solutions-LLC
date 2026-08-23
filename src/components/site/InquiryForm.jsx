@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { CheckCircle2, LoaderCircle, MessageSquareText, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { trackSiteEvent } from "@/lib/siteAnalytics";
 import { company } from "@/siteData";
@@ -31,15 +32,29 @@ export default function InquiryForm({
 
   const update = (event) => {
     const { name, type, value, checked } = event.target;
-    setForm((current) => ({
-      ...current,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    setForm((current) => {
+      const next = {
+        ...current,
+        [name]: type === "checkbox" ? checked : value,
+      };
+
+      if (name === "inquiry_type") {
+        next.project_stage = value === "custom_build" ? "exploring" : "not_applicable";
+        next.timeframe = value === "custom_build" ? "not_sure" : "not_applicable";
+      }
+
+      return next;
+    });
   };
 
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+
+    if (!event.currentTarget.checkValidity()) {
+      event.currentTarget.reportValidity();
+      return;
+    }
 
     if ((form.preferred_contact === "text" || form.preferred_contact === "call") && form.phone.trim().length < 7) {
       setError("Please include a phone number for text or call follow-up.");
@@ -208,7 +223,10 @@ export default function InquiryForm({
             onChange={update}
             required
           />
-          <span>MooreTech may contact me about this request. Submitting does not create a contract or paid engagement.</span>
+          <span>
+            MooreTech may contact me about this request. Submitting does not create
+            a contract or paid engagement. See our <Link to="/privacy">privacy policy</Link>.
+          </span>
         </label>
       </div>
 
