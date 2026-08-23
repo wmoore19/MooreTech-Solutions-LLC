@@ -16,7 +16,7 @@ export default function SiteFooter() {
             real-world operations.
           </p>
           <span className="footer-location">
-            Established {company.founded} · {company.location}
+            Established {company.founded} · {company.location} · {company.serviceArea}
           </span>
         </div>
 
@@ -26,28 +26,48 @@ export default function SiteFooter() {
           <Link to="/custom-builds">Custom builds</Link>
           <Link to="/about">About MooreTech</Link>
           <Link to="/careers">Careers</Link>
+          <Link to="/contact">Contact</Link>
         </div>
 
         <div>
           <h2>Contact</h2>
-          <a href={company.smsHref}>
+          <a
+            href={company.smsHref}
+            data-track-event="company_text_clicked"
+            data-track-placement="footer"
+            data-track-destination="sms"
+          >
             <MessageSquareText size={16} />
             Text {company.phoneDisplay}
           </a>
-          <a href={"mailto:" + company.email}>
+          <a
+            href={"mailto:" + company.email}
+            data-track-event="company_email_clicked"
+            data-track-placement="footer"
+            data-track-destination="email"
+          >
             <Mail size={16} />
             {company.email}
           </a>
-          <a href={company.githubUrl} target="_blank" rel="noreferrer">
+          <a
+            href={company.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-track-event="company_github_clicked"
+            data-track-placement="footer"
+            data-track-destination="github"
+          >
             <Github size={16} />
             GitHub repository
           </a>
+          <span className="footer-response">{company.responseTime}.</span>
         </div>
       </div>
 
       <div className="shell footer-bottom">
         <p>© 2026 MooreTech Solutions LLC. All rights reserved.</p>
         <div>
+          <Link to="/security">Security</Link>
           <Link to="/privacy">Privacy</Link>
           <Link to="/terms">Terms</Link>
         </div>
