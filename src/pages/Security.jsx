@@ -62,7 +62,13 @@ export default function Security() {
               MooreTech then documents the agreed approach—including important
               vendor dependencies and responsibilities—before paid work begins.
             </p>
-            <a className="text-link" href={"mailto:" + company.email}>
+            <a
+              className="text-link"
+              href={"mailto:" + company.email}
+              data-track-event="company_email_clicked"
+              data-track-placement="security"
+              data-track-destination="email"
+            >
               Ask a security or data question
             </a>
           </div>
