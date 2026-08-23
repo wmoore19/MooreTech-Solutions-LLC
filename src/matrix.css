@@ -1414,12 +1414,15 @@ p {
 
   .split-heading,
   .story-grid {
+    grid-template-columns: 1fr;
     gap: 30px;
   }
 
   .product-feature,
+  .product-feature.ironline-showcase,
   .product-page-card,
   .careers-layout {
+    grid-template-columns: 1fr;
     clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
   }
 
