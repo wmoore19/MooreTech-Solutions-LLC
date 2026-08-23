@@ -44,11 +44,23 @@ export default function Home() {
               carefully scoped custom systems for owner-led teams.
             </p>
             <div className="hero-actions">
-              <Link className="button" to="/products">
+              <Link
+                className="button"
+                to="/products"
+                data-track-event="company_product_clicked"
+                data-track-placement="home_hero"
+                data-track-destination="products"
+              >
                 Explore Ironline Office
                 <ArrowRight size={18} />
               </Link>
-              <Link className="button button-secondary" to="/custom-builds">
+              <Link
+                className="button button-secondary"
+                to="/custom-builds"
+                data-track-event="custom_build_clicked"
+                data-track-placement="home_hero"
+                data-track-destination="custom_builds"
+              >
                 Request a custom build
               </Link>
             </div>
@@ -108,11 +120,25 @@ export default function Home() {
                 ))}
               </div>
               <div className="inline-actions">
-                <a className="button" href={ironline.url} target="_blank" rel="noreferrer">
+                <a
+                  className="button"
+                  href={ironline.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-track-event="ironline_website_clicked"
+                  data-track-placement="home_product"
+                  data-track-destination="ironline"
+                >
                   Visit Ironline Office
                   <ExternalLink size={17} />
                 </a>
-                <Link className="text-link" to="/products">
+                <Link
+                  className="text-link"
+                  to="/products"
+                  data-track-event="company_product_clicked"
+                  data-track-placement="home_product"
+                  data-track-destination="products"
+                >
                   Product overview <ArrowRight size={16} />
                 </Link>
               </div>
@@ -159,10 +185,22 @@ export default function Home() {
             </article>
           </div>
           <div className="center-actions">
-            <Link className="button" to="/custom-builds">
+            <Link
+              className="button"
+              to="/custom-builds"
+              data-track-event="custom_build_clicked"
+              data-track-placement="home_custom_builds"
+              data-track-destination="custom_builds"
+            >
               See how custom requests work <ArrowRight size={18} />
             </Link>
-            <a className="text-link" href={customBuildEmail}>
+            <a
+              className="text-link"
+              href={customBuildEmail}
+              data-track-event="company_email_clicked"
+              data-track-placement="home_custom_builds"
+              data-track-destination="email"
+            >
               Email a request
             </a>
           </div>
@@ -198,11 +236,23 @@ export default function Home() {
             </p>
           </div>
           <div className="cta-actions">
-            <a className="button button-light" href={company.smsHref}>
+            <a
+              className="button button-light"
+              href={company.smsHref}
+              data-track-event="company_text_clicked"
+              data-track-placement="home_cta"
+              data-track-destination="sms"
+            >
               <MessageSquareText size={18} />
               Text {company.phoneDisplay}
             </a>
-            <Link className="button button-outline-light" to="/contact">
+            <Link
+              className="button button-outline-light"
+              to="/contact"
+              data-track-event="company_contact_clicked"
+              data-track-placement="home_cta"
+              data-track-destination="contact"
+            >
               Other contact options
             </Link>
           </div>
