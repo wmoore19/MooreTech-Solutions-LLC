@@ -22,6 +22,8 @@ export default function SiteHeader() {
           <img src={logoUrl} alt="MooreTech Solutions LLC" />
         </Link>
 
+        <span className="system-mark" aria-hidden="true">MT / systems online</span>
+
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <NavLink
