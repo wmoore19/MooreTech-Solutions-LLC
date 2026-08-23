@@ -1227,6 +1227,12 @@ p {
   line-height: 1.55;
 }
 
+.consent-field a {
+  color: var(--blue-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .form-error {
   margin: 22px 0 0;
   padding: 13px 15px;
