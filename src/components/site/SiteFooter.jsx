@@ -6,6 +6,10 @@ import { company } from "@/siteData";
 export default function SiteFooter() {
   return (
     <footer className="site-footer">
+      <div className="shell footer-system" aria-hidden="true">
+        <span>MooreTech systems online</span>
+        <span>Products / custom software / operations</span>
+      </div>
       <div className="shell footer-grid">
         <div className="footer-brand">
           <Link to="/" aria-label="MooreTech Solutions home">
