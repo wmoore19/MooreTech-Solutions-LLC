@@ -72,6 +72,10 @@ export default function Home() {
           </div>
 
           <div className="brand-panel">
+            <div className="brand-panel-status" aria-hidden="true">
+              <span>MT // operations matrix</span>
+              <span>Online</span>
+            </div>
             <div className="brand-panel-glow" aria-hidden="true" />
             <img src={logoUrl} alt="MooreTech Solutions LLC" />
             <div className="brand-panel-list">
