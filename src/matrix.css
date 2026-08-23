@@ -448,9 +448,13 @@ p {
   filter: blur(50px);
 }
 
-.brand-panel img {
+.brand-panel > img {
   width: 100%;
   margin: 8px auto 36px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   mix-blend-mode: screen;
   filter: saturate(1.16) brightness(1.18) contrast(1.07);
 }
