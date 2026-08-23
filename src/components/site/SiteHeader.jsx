@@ -41,10 +41,19 @@ export default function SiteHeader() {
             target="_blank"
             rel="noreferrer"
             aria-label="MooreTech Solutions on GitHub"
+            data-track-event="company_github_clicked"
+            data-track-placement="header"
+            data-track-destination="github"
           >
             <Github size={19} />
           </a>
-          <a className="button button-small" href={company.smsHref}>
+          <a
+            className="button button-small"
+            href={company.smsHref}
+            data-track-event="company_text_clicked"
+            data-track-placement="header"
+            data-track-destination="sms"
+          >
             <MessageSquareText size={17} />
             Text us
           </a>
@@ -73,10 +82,23 @@ export default function SiteHeader() {
                 {item.label}
               </NavLink>
             ))}
-            <a href={company.githubUrl} target="_blank" rel="noreferrer">
+            <a
+              href={company.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-track-event="company_github_clicked"
+              data-track-placement="mobile_nav"
+              data-track-destination="github"
+            >
               GitHub
             </a>
-            <a className="button" href={company.smsHref}>
+            <a
+              className="button"
+              href={company.smsHref}
+              data-track-event="company_text_clicked"
+              data-track-placement="mobile_nav"
+              data-track-destination="sms"
+            >
               Text {company.phoneDisplay}
             </a>
           </nav>
