@@ -28,7 +28,13 @@ export default function Careers() {
               Email your résumé and a short note about the kind of problems you
               are good at solving.
             </p>
-            <a className="button" href={careersEmail}>
+            <a
+              className="button"
+              href={careersEmail}
+              data-track-event="career_email_clicked"
+              data-track-placement="careers_opening"
+              data-track-destination="email"
+            >
               <Mail size={18} /> Email your résumé
             </a>
             <span className="contact-note">Sent to {company.email}</span>
@@ -54,7 +60,13 @@ export default function Careers() {
             opens, we will publish its responsibilities, working arrangement, and
             hiring process here.
           </p>
-          <a className="text-link" href={careersEmail}>
+          <a
+            className="text-link"
+            href={careersEmail}
+            data-track-event="career_email_clicked"
+            data-track-placement="careers_note"
+            data-track-destination="email"
+          >
             Introduce yourself <ArrowRight size={16} />
           </a>
         </div>
