@@ -1,5 +1,6 @@
 {
-  "name": "Untitled",
+  "name": "MooreTech Solutions LLC",
+  "description": "The company website for MooreTech Solutions LLC, featuring Ironline Office, selected custom software builds, careers, and contact information.",
   "site": {
     "installCommand": "npm install",
     "buildCommand": "npm run build",
