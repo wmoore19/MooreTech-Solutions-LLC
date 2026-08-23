@@ -1,5 +1,6 @@
 import { Github, Mail, MessageSquareText } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoUrl from "@/assets/mooretech-logo.webp";
 import { company } from "@/siteData";
 
 export default function SiteFooter() {
@@ -8,7 +9,7 @@ export default function SiteFooter() {
       <div className="shell footer-grid">
         <div className="footer-brand">
           <Link to="/" aria-label="MooreTech Solutions home">
-            <img src="/mooretech-logo.webp" alt="MooreTech Solutions LLC" />
+            <img src={logoUrl} alt="MooreTech Solutions LLC" />
           </Link>
           <p>
             Practical software products and thoughtfully scoped custom systems for
