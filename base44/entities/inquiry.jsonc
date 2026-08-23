@@ -1,0 +1,133 @@
+{
+  "name": "Inquiry",
+  "description": "Public company and custom-build inquiries received through the MooreTech website.",
+  "type": "object",
+  "properties": {
+    "inquiry_type": {
+      "type": "string",
+      "enum": [
+        "custom_build",
+        "ironline_office",
+        "partnership",
+        "general"
+      ],
+      "description": "The reason for the inquiry."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120,
+      "description": "Contact name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "description": "Contact email address."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Optional contact phone number."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Optional company name."
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": [
+        "email",
+        "text",
+        "call"
+      ],
+      "default": "email",
+      "description": "Preferred response method."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 5000,
+      "description": "The inquiry or operational problem described by the visitor."
+    },
+    "project_stage": {
+      "type": "string",
+      "enum": [
+        "exploring",
+        "comparing",
+        "ready_to_scope",
+        "urgent_need",
+        "not_applicable"
+      ],
+      "default": "exploring",
+      "description": "Current stage of a possible project."
+    },
+    "timeframe": {
+      "type": "string",
+      "enum": [
+        "flexible",
+        "one_to_three_months",
+        "three_to_six_months",
+        "not_sure",
+        "not_applicable"
+      ],
+      "default": "not_sure",
+      "description": "Preferred timeframe, if applicable."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Page where the inquiry was submitted."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "qualified",
+        "closed",
+        "spam"
+      ],
+      "default": "new",
+      "description": "Internal inquiry status."
+    },
+    "consent_given": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the visitor agreed to be contacted about the request."
+    }
+  },
+  "required": [
+    "inquiry_type",
+    "name",
+    "email",
+    "preferred_contact",
+    "message",
+    "source_page",
+    "status",
+    "consent_given"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
