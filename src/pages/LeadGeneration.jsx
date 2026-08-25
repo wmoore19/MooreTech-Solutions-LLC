@@ -12,6 +12,13 @@ const facilityTypes = [
   "Car dealerships", "Professional offices", "Multi-location businesses",
 ];
 
+const serviceFitCards = [
+  { icon: Building2, title: "Owner-led companies", copy: "Small teams where the owner or a working manager still drives sales." },
+  { icon: MapPinned, title: "Defined territory", copy: "A practical geographic area the team can actually service." },
+  { icon: Target, title: "Clear best-fit account", copy: "A known facility type, contract size, and service category." },
+  { icon: CalendarCheck, title: "Capacity to quote", copy: "Availability to attend qualified meetings and follow through." },
+];
+
 const process = [
   ["01", "Define the target", "We document one service, one territory, the best-fit facility types, exclusions, and a written qualified-appointment definition."],
   ["02", "Research accounts", "MooreTech manually identifies businesses using public information and records why each one appears to fit."],
@@ -104,7 +111,7 @@ function RequestForm() {
         </div>
         <div className="leadgen-field wide"><label htmlFor="lg-notes">Notes</label><textarea id="lg-notes" value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} /></div>
         <div aria-hidden="true" style={{ position: "absolute", left: "-10000px" }}>
-          <label htmlFor="lg-check">Leave blank</label><input id="lg-check" tabIndex="-1" autoComplete="off" value={form.website_check} onChange={(event) => setForm({ ...form, website_check: event.target.value })} />
+          <label htmlFor="lg-check">Leave blank</label><input id="lg-check" tabIndex={-1} autoComplete="off" value={form.website_check} onChange={(event) => setForm({ ...form, website_check: event.target.value })} />
         </div>
       </div>
       <label className="leadgen-consent">
@@ -148,12 +155,7 @@ export default function LeadGeneration() {
             <p>This is a focused business-development service for operators who can take on new recurring commercial work but do not have time to build and work a disciplined account list.</p>
           </div>
           <div className="leadgen-grid four">
-            {[
-              [Building2, "Owner-led companies", "Small teams where the owner or a working manager still drives sales."],
-              [MapPinned, "Defined territory", "A practical geographic area the team can actually service."],
-              [Target, "Clear best-fit account", "A known facility type, contract size, and service category."],
-              [CalendarCheck, "Capacity to quote", "Availability to attend qualified meetings and follow through."],
-            ].map(([Icon, title, copy]) => <article className="leadgen-card" key={title}><Icon size={24} /><h3>{title}</h3><p>{copy}</p></article>)}
+            {serviceFitCards.map(({ icon: Icon, title, copy }) => <article className="leadgen-card" key={title}><Icon size={24} /><h3>{title}</h3><p>{copy}</p></article>)}
           </div>
         </div>
       </section>
