@@ -5,17 +5,15 @@ export async function pipelineApi(action, payload = {}) {
     const response = await base44.functions.invoke("pipeline-api", { action, ...payload });
     const data = response?.data ?? response;
     if (data?.error) {
-      const error = new Error(data.error);
-      error.details = data.details;
-      throw error;
+      throw Object.assign(new Error(data.error), { details: data.details });
     }
     return data;
   } catch (error) {
     const body = error?.response?.data;
     const message = body?.error || error?.message || "Pipeline request failed.";
-    const wrapped = new Error(message);
-    wrapped.details = body?.details || error?.details;
-    throw wrapped;
+    throw Object.assign(new Error(message), {
+      details: body?.details || error?.details,
+    });
   }
 }
 
