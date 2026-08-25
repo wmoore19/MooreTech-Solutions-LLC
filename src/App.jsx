@@ -12,6 +12,7 @@ import Contact from "@/pages/Contact";
 import CustomBuilds from "@/pages/CustomBuilds";
 import ForgotPassword from "@/pages/ForgotPassword";
 import Home from "@/pages/Home";
+import LeadGeneration from "@/pages/LeadGeneration";
 import Login from "@/pages/Login";
 import OAuthConsent from "@/pages/OAuthConsent";
 import Privacy from "@/pages/Privacy";
@@ -49,6 +50,7 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/custom-builds" element={<CustomBuilds />} />
+          <Route path="/lead-generation" element={<LeadGeneration />} />
           <Route path="/about" element={<About />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
