@@ -20,6 +20,7 @@ export const company = {
 
 export const navigation = [
   { label: "Products", to: "/products" },
+  { label: "Lead Generation", to: "/lead-generation" },
   { label: "Custom Builds", to: "/custom-builds" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
