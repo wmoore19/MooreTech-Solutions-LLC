@@ -13,6 +13,11 @@ const pageMeta = {
     description:
       "Explore Ironline Office, MooreTech's first public product for owner-led service teams managing customers, work, schedules, invoices, and follow-up.",
   },
+  "/lead-generation": {
+    title: "Commercial Lead Generation | MooreTech Solutions LLC",
+    description:
+      "Request a free 10-account sample or apply for MooreTech’s 14-day commercial lead-generation pilot for commercial service companies.",
+  },
   "/custom-builds": {
     title: "Custom Operational Software Builds | MooreTech Solutions LLC",
     description:
