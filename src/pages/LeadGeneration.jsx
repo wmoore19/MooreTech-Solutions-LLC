@@ -1,8 +1,7 @@
 import { useState } from "react";
 import {
-  ArrowRight, Building2, CalendarCheck, CheckCircle2, ClipboardList,
-  Handshake, MailCheck, MapPinned, PhoneCall, Search, ShieldCheck,
-  Target, UserCheck,
+  ArrowRight, Building2, CalendarCheck, MailCheck, MapPinned, PhoneCall,
+  ShieldCheck, Target,
 } from "lucide-react";
 import { submitPipelineInquiry } from "@/pipeline/api";
 import "@/pages/lead-generation.css";
