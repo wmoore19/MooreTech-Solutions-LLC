@@ -62,38 +62,15 @@
     "changed_by"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
-    },
     "create": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
       "user_condition": {

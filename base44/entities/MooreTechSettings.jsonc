@@ -46,7 +46,7 @@
     "primary_differentiator": {
       "type": "string",
       "maxLength": 2000,
-      "default": "Exclusive opportunities built for your company\u2014not recycled internet leads sold to multiple competitors."
+      "default": "Exclusive opportunities built for your company—not recycled internet leads sold to multiple competitors."
     },
     "featured_niche": {
       "type": "string",
@@ -136,32 +136,26 @@
         "complete"
       ],
       "default": "business_details"
+    },
+    "default_qualification_criteria": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "setup_complete": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [
     "company_name"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        }
-      ]
-    },
     "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
       "user_condition": {
         "role": "admin"
       }

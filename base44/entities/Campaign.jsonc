@@ -91,6 +91,45 @@
     "is_demo": {
       "type": "boolean",
       "default": false
+    },
+    "campaign_type": {
+      "type": "string",
+      "enum": [
+        "sample",
+        "founding_pilot",
+        "service"
+      ],
+      "default": "founding_pilot"
+    },
+    "sales_prospect_id": {
+      "type": "string",
+      "description": "Source MooreTech sales prospect for samples and conversions."
+    },
+    "intake_status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "complete"
+      ],
+      "default": "not_started"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "not_required",
+        "awaiting_payment",
+        "paid",
+        "waived"
+      ],
+      "default": "awaiting_payment"
+    },
+    "permitted_staff_user_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "MooreTech users explicitly assigned to this campaign."
     }
   },
   "required": [
@@ -99,94 +138,25 @@
     "campaign_status"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "data.client_organization_id": "{{user.data.organization_id}}"
-        }
-      ]
-    },
     "create": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "data.client_organization_id": "{{user.data.organization_id}}"
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "$and": [
-            {
-              "data.client_organization_id": "{{user.data.organization_id}}"
-            },
-            {
-              "user_condition": {
-                "role": "client_admin"
-              }
-            }
-          ]
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }

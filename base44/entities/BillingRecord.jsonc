@@ -73,6 +73,16 @@
     "is_demo": {
       "type": "boolean",
       "default": false
+    },
+    "permitted_staff_user_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "invoice_number": {
+      "type": "string",
+      "maxLength": 100
     }
   },
   "required": [
@@ -82,64 +92,25 @@
     "payment_status"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "data.client_organization_id": "{{user.data.organization_id}}"
-        }
-      ]
-    },
     "create": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }

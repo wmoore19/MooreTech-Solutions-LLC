@@ -1,7 +1,7 @@
 {
   "name": "MooreTechSalesProspect",
   "type": "object",
-  "description": "A business that may hire MooreTech for lead-generation services. MooreTech-internal pipeline data \u2014 never visible to clients.",
+  "description": "A business that may hire MooreTech for lead-generation services. MooreTech-internal pipeline data — never visible to clients.",
   "properties": {
     "company": {
       "type": "string",
@@ -100,6 +100,29 @@
     "converted_organization_id": {
       "type": "string",
       "description": "Organization id created on conversion to client."
+    },
+    "sample_campaign_id": {
+      "type": "string",
+      "description": "Internal sample campaign id."
+    },
+    "free_sample_status": {
+      "type": "string",
+      "enum": [
+        "not_requested",
+        "requested",
+        "in_progress",
+        "delivered"
+      ],
+      "default": "not_requested"
+    },
+    "preferred_contact_method": {
+      "type": "string",
+      "enum": [
+        "email",
+        "call",
+        "text"
+      ],
+      "default": "email"
     }
   },
   "required": [
@@ -107,76 +130,25 @@
     "sales_stage"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        }
-      ]
-    },
     "create": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }

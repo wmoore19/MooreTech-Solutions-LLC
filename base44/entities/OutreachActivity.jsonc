@@ -88,7 +88,7 @@
     "internal_notes": {
       "type": "string",
       "maxLength": 5000,
-      "description": "Private MooreTech notes \u2014 not visible to clients."
+      "description": "Private MooreTech notes — not visible to clients."
     },
     "client_visible_notes": {
       "type": "string",
@@ -98,6 +98,12 @@
     "is_demo": {
       "type": "boolean",
       "default": false
+    },
+    "permitted_staff_user_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": [
@@ -106,94 +112,25 @@
     "activity_type"
   ],
   "rls": {
-    "read": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "data.client_organization_id": "{{user.data.organization_id}}"
-        }
-      ]
-    },
     "create": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "data.client_organization_id": "{{user.data.organization_id}}"
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_staff"
-          }
-        },
-        {
-          "$and": [
-            {
-              "data.client_organization_id": "{{user.data.organization_id}}"
-            },
-            {
-              "user_condition": {
-                "role": "client_admin"
-              }
-            }
-          ]
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
-      "$or": [
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "user_condition": {
-            "role": "mooretech_manager"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }
