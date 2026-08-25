@@ -1,0 +1,125 @@
+{
+  "name": "SuppressionRecord",
+  "type": "object",
+  "description": "Central suppression list entry. Can be company-wide (MooreTech) or client-specific. Checked before any outreach action.",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id for client-specific suppressions. Null/empty = company-wide."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "suppression_type": {
+      "type": "string",
+      "enum": [
+        "do_not_email",
+        "do_not_call",
+        "do_not_text",
+        "do_not_contact",
+        "existing_customer",
+        "existing_opportunity",
+        "client_exclusion"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "request_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_campaign": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "added_by": {
+      "type": "string",
+      "description": "User id who added the suppression."
+    },
+    "removal_reason": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Documented reason required to remove a suppression (admin only)."
+    }
+  },
+  "required": [
+    "suppression_type"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

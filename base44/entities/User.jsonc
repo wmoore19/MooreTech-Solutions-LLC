@@ -1,17 +1,47 @@
 {
+  "name": "User",
+  "type": "object",
+  "description": "App user. role determines access level. admin = MooreTech Owner.",
   "properties": {
     "role": {
       "type": "string",
-      "description": "The role of the user in the app",
+      "description": "App role. admin = MooreTech Owner (full access). mooretech_manager = Campaign Manager. mooretech_staff = Researcher/Caller. client_admin = Client Administrator. client_viewer = Client Viewer (read-only). user = default fallback.",
       "enum": [
         "admin",
+        "mooretech_manager",
+        "mooretech_staff",
+        "client_admin",
+        "client_viewer",
         "user"
       ]
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Contact phone number."
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "Organization record id this user belongs to. Required for client users (tenant anchor)."
+    },
+    "job_title": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the user can sign in."
+    },
+    "assigned_campaign_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Campaign ids this user is assigned to (MooreTech staff)."
     }
   },
   "required": [
     "role"
-  ],
-  "name": "User",
-  "type": "object"
+  ]
 }

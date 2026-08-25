@@ -1,0 +1,218 @@
+{
+  "name": "QualificationRecord",
+  "type": "object",
+  "description": "Structured qualification of a contact against campaign criteria. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "Contact id."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id."
+    },
+    "qualification_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_by": {
+      "type": "string",
+      "description": "User id of staff who completed qualification."
+    },
+    "uses_service_currently": {
+      "type": "boolean"
+    },
+    "current_provider": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "contract_status": {
+      "type": "string",
+      "enum": [
+        "no_contract",
+        "active",
+        "upcoming_review",
+        "expiring",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "contract_review_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "service_problem": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "facility_size": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "number_of_locations": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "expected_service_frequency": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "decision_authority": {
+      "type": "string",
+      "enum": [
+        "decision_maker",
+        "influencer",
+        "gatekeeper",
+        "user",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "approximate_opportunity_value": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "stated_interest": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "none"
+    },
+    "agreed_next_step": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "qualification_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "qualified",
+        "disqualified",
+        "override"
+      ],
+      "default": "pending"
+    },
+    "override_explanation": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Required when status is override."
+    },
+    "disqualification_reason": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "contact_id",
+    "campaign_id",
+    "qualification_status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "name": "Campaign",
+  "type": "object",
+  "description": "A lead-generation campaign for a client. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "service_promoted": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "territory": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "campaign_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "awaiting_intake",
+        "awaiting_payment",
+        "researching",
+        "awaiting_client_approval",
+        "outreach_active",
+        "paused",
+        "reporting",
+        "completed",
+        "cancelled"
+      ],
+      "default": "draft"
+    },
+    "account_target": {
+      "type": "number",
+      "description": "Target number of researched accounts.",
+      "default": 50
+    },
+    "price": {
+      "type": "number",
+      "description": "Upfront pilot price.",
+      "default": 300
+    },
+    "per_held_appointment_fee": {
+      "type": "number",
+      "description": "Fee per held qualified appointment.",
+      "default": 150
+    },
+    "assigned_manager": {
+      "type": "string",
+      "description": "User id of assigned MooreTech campaign manager."
+    },
+    "assigned_researcher": {
+      "type": "string",
+      "description": "User id of assigned researcher."
+    },
+    "assigned_caller": {
+      "type": "string",
+      "description": "User id of assigned caller."
+    },
+    "qualification_criteria": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "client_approval_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "changes_requested"
+      ],
+      "default": "pending"
+    },
+    "campaign_notes": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "campaign_name",
+    "campaign_status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "name": "Contact",
+  "type": "object",
+  "description": "A decision-maker at a target account. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "target_account_id": {
+      "type": "string",
+      "description": "Target account id."
+    },
+    "first_name": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "last_name": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "job_title": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "role_in_decision": {
+      "type": "string",
+      "enum": [
+        "decision_maker",
+        "influencer",
+        "gatekeeper",
+        "user",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "business_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "business_phone": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "extension": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "contact_source": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "unverified",
+        "verified",
+        "outdated",
+        "invalid"
+      ],
+      "default": "unverified"
+    },
+    "verification_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "preferred_contact_method": {
+      "type": "string",
+      "enum": [
+        "email",
+        "phone",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "consent_to_text_status": {
+      "type": "string",
+      "enum": [
+        "not_requested",
+        "granted",
+        "denied",
+        "not_applicable"
+      ],
+      "default": "not_applicable"
+    },
+    "do_not_email_status": {
+      "type": "boolean",
+      "default": false
+    },
+    "do_not_call_status": {
+      "type": "boolean",
+      "default": false
+    },
+    "do_not_contact_status": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "target_account_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    }
+  }
+}

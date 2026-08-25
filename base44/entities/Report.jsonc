@@ -1,0 +1,189 @@
+{
+  "name": "Report",
+  "type": "object",
+  "description": "A client-facing campaign report for a date range. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id."
+    },
+    "reporting_period_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "reporting_period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "accounts_researched": {
+      "type": "number",
+      "default": 0
+    },
+    "contacts_identified": {
+      "type": "number",
+      "default": 0
+    },
+    "emails_sent": {
+      "type": "number",
+      "default": 0
+    },
+    "calls_attempted": {
+      "type": "number",
+      "default": 0
+    },
+    "decision_makers_reached": {
+      "type": "number",
+      "default": 0
+    },
+    "conversations": {
+      "type": "number",
+      "default": 0
+    },
+    "interested_prospects": {
+      "type": "number",
+      "default": 0
+    },
+    "appointments_scheduled": {
+      "type": "number",
+      "default": 0
+    },
+    "appointments_held": {
+      "type": "number",
+      "default": 0
+    },
+    "no_shows": {
+      "type": "number",
+      "default": 0
+    },
+    "proposals": {
+      "type": "number",
+      "default": 0
+    },
+    "wins": {
+      "type": "number",
+      "default": 0
+    },
+    "revenue_reported": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "recommendations": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "client_visible_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "ready_for_review",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "campaign_id",
+    "client_visible_status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

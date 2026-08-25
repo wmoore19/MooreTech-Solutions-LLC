@@ -1,0 +1,109 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "description": "Immutable audit trail of significant record changes. MooreTech-internal; never deleted except by admin.",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Organization id affected, if applicable."
+    },
+    "entity_type": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Entity name affected."
+    },
+    "record_id": {
+      "type": "string",
+      "description": "Record id affected."
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "create",
+        "update",
+        "delete",
+        "status_change",
+        "approval",
+        "appointment_outcome",
+        "billing_change",
+        "user_invitation",
+        "data_export",
+        "suppression_change"
+      ]
+    },
+    "changed_by": {
+      "type": "string",
+      "description": "User id who performed the action."
+    },
+    "changed_by_email": {
+      "type": "string",
+      "maxLength": 254
+    },
+    "previous_value": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "new_value": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "entity_type",
+    "action",
+    "changed_by"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

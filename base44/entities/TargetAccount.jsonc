@@ -1,0 +1,221 @@
+{
+  "name": "TargetAccount",
+  "type": "object",
+  "description": "A researched target business for a campaign. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id."
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "website": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "public_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "state": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "facility_type": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "estimated_company_size": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "estimated_fit_score": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unrated"
+      ],
+      "default": "unrated"
+    },
+    "reason_for_fit": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "research_source": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "research_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "client_approval_status": {
+      "type": "string",
+      "enum": [
+        "pending_review",
+        "approved",
+        "rejected",
+        "existing_customer",
+        "known_opportunity",
+        "competitor",
+        "do_not_contact"
+      ],
+      "default": "pending_review"
+    },
+    "exclusion_reason": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "outreach_status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "contacted",
+        "qualified",
+        "appointment_scheduled",
+        "disqualified",
+        "do_not_contact"
+      ],
+      "default": "not_started"
+    },
+    "assigned_staff_member": {
+      "type": "string",
+      "description": "User id of assigned MooreTech staff."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "campaign_id",
+    "company_name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    }
+  }
+}

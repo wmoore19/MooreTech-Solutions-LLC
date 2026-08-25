@@ -1,0 +1,182 @@
+{
+  "name": "MooreTechSalesProspect",
+  "type": "object",
+  "description": "A business that may hire MooreTech for lead-generation services. MooreTech-internal pipeline data \u2014 never visible to clients.",
+  "properties": {
+    "company": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "owner_or_decision_maker": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "state": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "website": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "lead_source": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "current_sales_process": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "How they currently find customers."
+    },
+    "capacity_for_new_business": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "estimated_fit": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "personalized_observation": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Why they may fit, written manually."
+    },
+    "sales_stage": {
+      "type": "string",
+      "enum": [
+        "new",
+        "researching",
+        "contact_ready",
+        "contact_attempted",
+        "conversation",
+        "free_sample_requested",
+        "free_sample_delivered",
+        "discovery_scheduled",
+        "proposal_sent",
+        "pilot_invoice_sent",
+        "pilot_paid",
+        "converted_to_client",
+        "nurture",
+        "not_interested",
+        "do_not_contact"
+      ],
+      "default": "new"
+    },
+    "last_contact": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "next_follow_up": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "converted_organization_id": {
+      "type": "string",
+      "description": "Organization id created on conversion to client."
+    }
+  },
+  "required": [
+    "company",
+    "sales_stage"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

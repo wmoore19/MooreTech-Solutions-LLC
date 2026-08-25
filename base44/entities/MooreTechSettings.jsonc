@@ -1,0 +1,180 @@
+{
+  "name": "MooreTechSettings",
+  "type": "object",
+  "description": "Administrator-controlled company settings: business info, pricing, compliance, sender identities, calendar, payment methods. Admin-only edits.",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "default": "MooreTech Solutions LLC"
+    },
+    "service_name": {
+      "type": "string",
+      "maxLength": 200,
+      "default": "MooreTech Commercial Pipeline"
+    },
+    "owner_name": {
+      "type": "string",
+      "maxLength": 200,
+      "default": "Drew Moore"
+    },
+    "contact_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "default": "admin@ironlineoffice.com"
+    },
+    "contact_phone": {
+      "type": "string",
+      "maxLength": 50,
+      "default": "870-819-1018"
+    },
+    "phone_label": {
+      "type": "string",
+      "maxLength": 100,
+      "default": "Call or text"
+    },
+    "business_mailing_address": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "positioning_statement": {
+      "type": "string",
+      "maxLength": 2000,
+      "default": "MooreTech helps commercial service companies build a predictable sales pipeline. We identify target accounts, reach the appropriate decision-makers, qualify opportunities, and schedule sales appointments."
+    },
+    "primary_differentiator": {
+      "type": "string",
+      "maxLength": 2000,
+      "default": "Exclusive opportunities built for your company\u2014not recycled internet leads sold to multiple competitors."
+    },
+    "featured_niche": {
+      "type": "string",
+      "maxLength": 200,
+      "default": "Commercial cleaning and janitorial"
+    },
+    "pilot_price": {
+      "type": "number",
+      "default": 300
+    },
+    "per_held_appointment_fee": {
+      "type": "number",
+      "default": 150
+    },
+    "pilot_account_target": {
+      "type": "number",
+      "default": 50
+    },
+    "pilot_duration_days": {
+      "type": "number",
+      "default": 14
+    },
+    "free_sample_account_limit": {
+      "type": "number",
+      "default": 10
+    },
+    "limited_guarantee": {
+      "type": "string",
+      "maxLength": 2000,
+      "default": "If an appointment does not satisfy the written qualification criteria agreed upon before the campaign, MooreTech will replace it. MooreTech does not guarantee that the prospect will purchase the client's services."
+    },
+    "no_guarantee_disclaimer": {
+      "type": "string",
+      "maxLength": 2000,
+      "default": "MooreTech does not guarantee sales, contracts, proposals, revenue, or return on investment."
+    },
+    "sender_identity_name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "sender_identity_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "default_opt_out_language": {
+      "type": "string",
+      "maxLength": 1000,
+      "default": "Reply 'unsubscribe' and no further marketing emails will be sent."
+    },
+    "payment_methods": {
+      "type": "string",
+      "maxLength": 500,
+      "default": "manual"
+    },
+    "stripe_connected": {
+      "type": "boolean",
+      "default": false
+    },
+    "calendar_options": {
+      "type": "string",
+      "maxLength": 1000,
+      "default": "Google Calendar link / downloadable .ics"
+    },
+    "service_agreement_url": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "lead_generation_page_published": {
+      "type": "boolean",
+      "default": false
+    },
+    "setup_step": {
+      "type": "string",
+      "enum": [
+        "business_details",
+        "contact_info",
+        "pricing",
+        "mailing_address",
+        "sender_identities",
+        "qualification_defaults",
+        "service_agreement",
+        "payment_methods",
+        "calendar_options",
+        "demo_data",
+        "publish_page",
+        "complete"
+      ],
+      "default": "business_details"
+    }
+  },
+  "required": [
+    "company_name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

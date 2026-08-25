@@ -1,0 +1,234 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "description": "A sales appointment scheduled for a client with a qualified contact. Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id."
+    },
+    "target_account_id": {
+      "type": "string",
+      "description": "Target account id."
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "Contact id."
+    },
+    "appointment_title": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "start_time": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "end_time": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "time_zone": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "meeting_type": {
+      "type": "string",
+      "enum": [
+        "in_person",
+        "phone",
+        "video"
+      ],
+      "default": "video"
+    },
+    "location_or_link": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "client_attendee": {
+      "type": "string",
+      "description": "User id of client attendee."
+    },
+    "mooretech_staff_member": {
+      "type": "string",
+      "description": "User id of MooreTech staff."
+    },
+    "qualification_summary": {
+      "type": "string",
+      "maxLength": 3000
+    },
+    "confirmation_status": {
+      "type": "string",
+      "enum": [
+        "unconfirmed",
+        "confirmed",
+        "rescheduled",
+        "cancelled"
+      ],
+      "default": "unconfirmed"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "confirmed",
+        "rescheduled",
+        "cancelled",
+        "no_show",
+        "held",
+        "disqualified_after_meeting",
+        "proposal_sent",
+        "won",
+        "lost"
+      ],
+      "default": "scheduled"
+    },
+    "outcome_notes": {
+      "type": "string",
+      "maxLength": 3000
+    },
+    "proposal_value": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "won_revenue": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "case_study_consent": {
+      "type": "boolean",
+      "default": false
+    },
+    "ironline_handoff": {
+      "type": "boolean",
+      "default": false
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "performance_fee_status": {
+      "type": "string",
+      "enum": [
+        "not_applicable",
+        "pending",
+        "invoiced",
+        "waived"
+      ],
+      "default": "not_applicable"
+    },
+    "performance_fee_billing_id": {
+      "type": "string",
+      "description": "BillingRecord id of the held-appointment fee, to prevent duplicates."
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "campaign_id",
+    "target_account_id",
+    "contact_id",
+    "outcome"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

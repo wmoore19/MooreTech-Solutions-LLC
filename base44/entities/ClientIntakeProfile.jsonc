@@ -1,0 +1,189 @@
+{
+  "name": "ClientIntakeProfile",
+  "type": "object",
+  "description": "Onboarding profile capturing a client's ideal customer profile, territory, qualification criteria, and exclusions.",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "services_offered": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "most_profitable_service": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "geographic_territory": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "best_existing_customer_types": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "poor_fit_customer_types": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "minimum_contract_value": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "preferred_industries": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "target_facility_types": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "preferred_decision_maker_titles": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "current_customer_exclusions": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "competitor_exclusions": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "maximum_new_client_capacity": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "calendar_availability": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "sales_contact": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "qualification_questions": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "disqualifying_criteria": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "onboarding_step": {
+      "type": "string",
+      "enum": [
+        "business_info",
+        "services",
+        "ideal_customer",
+        "territory",
+        "min_requirements",
+        "exclusions",
+        "qualification",
+        "calendar",
+        "approval",
+        "complete"
+      ],
+      "default": "business_info"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    }
+  },
+  "required": [
+    "client_organization_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

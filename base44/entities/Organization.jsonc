@@ -1,0 +1,165 @@
+{
+  "name": "Organization",
+  "type": "object",
+  "description": "An organization in the pipeline. mooretech = the company itself, client = a paying client, prospect = a business that may hire MooreTech.",
+  "properties": {
+    "organization_name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "organization_type": {
+      "type": "string",
+      "enum": [
+        "mooretech",
+        "client",
+        "prospect"
+      ]
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "website": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "primary_phone": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "primary_email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "territory": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "prospect",
+        "onboarding",
+        "churned"
+      ],
+      "default": "active"
+    },
+    "owner": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Owner or primary decision-maker name."
+    },
+    "assigned_campaign_manager": {
+      "type": "string",
+      "description": "User id of the assigned MooreTech campaign manager."
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "How this organization was added."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000
+    }
+  },
+  "required": [
+    "organization_name",
+    "organization_type"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

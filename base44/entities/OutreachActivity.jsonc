@@ -1,0 +1,199 @@
+{
+  "name": "OutreachActivity",
+  "type": "object",
+  "description": "A logged outreach activity (email, call, follow-up, etc.). Scoped to a client organization (tenant).",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id."
+    },
+    "target_account_id": {
+      "type": "string",
+      "description": "Target account id."
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "Contact id."
+    },
+    "activity_type": {
+      "type": "string",
+      "enum": [
+        "research",
+        "email_drafted",
+        "email_sent_manually",
+        "email_received",
+        "call_attempted",
+        "call_connected",
+        "voicemail",
+        "meeting_scheduled",
+        "follow_up",
+        "do_not_contact_request",
+        "other"
+      ]
+    },
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "staff_member": {
+      "type": "string",
+      "description": "User id of staff who performed the activity."
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "outbound",
+        "inbound"
+      ],
+      "default": "outbound"
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "no_answer",
+        "voicemail",
+        "gatekeeper",
+        "wrong_number",
+        "decision_maker_unavailable",
+        "decision_maker_reached",
+        "follow_up_requested",
+        "information_requested",
+        "interested",
+        "not_interested",
+        "existing_vendor",
+        "contract_review_later",
+        "appointment_scheduled",
+        "do_not_call",
+        "disqualified",
+        "not_applicable"
+      ],
+      "default": "not_applicable"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "template_used": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "internal_notes": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Private MooreTech notes \u2014 not visible to clients."
+    },
+    "client_visible_notes": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Notes visible to the client."
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "campaign_id",
+    "activity_type"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.client_organization_id": "{{user.data.organization_id}}"
+            },
+            {
+              "user_condition": {
+                "role": "client_admin"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

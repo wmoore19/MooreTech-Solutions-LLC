@@ -1,0 +1,113 @@
+{
+  "name": "Template",
+  "type": "object",
+  "description": "Editable email, call, and message templates with merge fields. MooreTech-internal.",
+  "properties": {
+    "template_type": {
+      "type": "string",
+      "enum": [
+        "client_acquisition_email",
+        "client_acquisition_call",
+        "discovery_question",
+        "cleaning_prospect_email",
+        "appointment_confirmation",
+        "other"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "body": {
+      "type": "string",
+      "maxLength": 10000,
+      "description": "Template body. Supports merge fields like {{first_name}}, {{company_name}}, {{territory}}."
+    },
+    "merge_fields": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Comma-separated list of available merge fields."
+    },
+    "opt_out_language": {
+      "type": "string",
+      "maxLength": 1000,
+      "default": "Reply 'unsubscribe' and no further marketing emails will be sent."
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "template_type",
+    "name",
+    "body"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_staff"
+          }
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}

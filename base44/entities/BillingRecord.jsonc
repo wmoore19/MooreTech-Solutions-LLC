@@ -1,0 +1,145 @@
+{
+  "name": "BillingRecord",
+  "type": "object",
+  "description": "An invoice or billing line item for a client. Scoped to a client organization (tenant). Researchers/callers cannot access billing.",
+  "properties": {
+    "client_organization_id": {
+      "type": "string",
+      "description": "Client Organization id (tenant anchor)."
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "Campaign id, if applicable."
+    },
+    "billing_type": {
+      "type": "string",
+      "enum": [
+        "pilot_setup",
+        "monthly_service",
+        "held_appointment",
+        "adjustment",
+        "credit",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "overdue",
+        "void",
+        "refunded"
+      ],
+      "default": "unpaid"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "stripe",
+        "other"
+      ],
+      "default": "manual"
+    },
+    "paid_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "stripe_reference": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "related_appointment_id": {
+      "type": "string",
+      "description": "Appointment id for held-appointment fees."
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_organization_id",
+    "billing_type",
+    "amount",
+    "payment_status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        },
+        {
+          "data.client_organization_id": "{{user.data.organization_id}}"
+        }
+      ]
+    },
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "mooretech_manager"
+          }
+        }
+      ]
+    }
+  }
+}
