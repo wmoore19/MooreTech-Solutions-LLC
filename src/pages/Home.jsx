@@ -210,7 +210,7 @@ export default function Home() {
                   data-track-placement="home_business_launch"
                   data-track-destination="business_launch"
                 >
-                  See the launch package <ArrowRight size={18} />
+                  See Ironline Launch <ArrowRight size={18} />
                 </Link>
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function Home() {
                 <li><Check /> One adult owner</li>
                 <li><Check /> Arkansas domestic LLC</li>
                 <li><Check /> Ordinary, non-regulated activity</li>
-                <li><Check /> Owner reviews every filing</li>
+                <li><Check /> Client types, attests, submits, and pays official filings</li>
               </ul>
               <p>
                 Legal, tax, accounting, registered-agent, bookkeeping, nonprofit,
