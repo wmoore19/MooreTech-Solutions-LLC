@@ -137,6 +137,7 @@ export default function InquiryForm({
             <select name="inquiry_type" value={form.inquiry_type} onChange={update}>
               <option value="custom_build">Custom software build</option>
               <option value="ironline_office">Ironline Office</option>
+              <option value="business_launch">Arkansas Business Launch</option>
               <option value="partnership">Partnership</option>
               <option value="general">General question</option>
             </select>
