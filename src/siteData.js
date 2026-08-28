@@ -20,7 +20,7 @@ export const company = {
 
 export const navigation = [
   { label: "Products", to: "/products" },
-  { label: "Business Launch", to: "/business-launch" },
+  { label: "Ironline Launch", to: "/business-launch" },
   { label: "Lead Generation", to: "/lead-generation" },
   { label: "Custom Builds", to: "/custom-builds" },
   { label: "About", to: "/about" },
@@ -39,16 +39,16 @@ export const ironline = {
 };
 
 export const businessLaunch = {
-  name: "Arkansas Business Launch",
+  name: "Ironline Launch",
   url: "/business-launch",
   externalUrl: "",
   price: "200",
   priceLabel: "$200 one time",
-  eyebrow: "Administrative setup service",
+  eyebrow: "A MooreTech Solutions LLC service",
   summary:
-    "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, with a clear handoff and optional Ironline QuickStart.",
+    "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, with a defined four-hour service cap and optional Ironline QuickStart.",
   included: [
-    "Arkansas LLC filing guidance",
+    "Official-site filing checklist and navigation",
     "Free EIN walkthrough",
     "Sales-tax registration setup when applicable",
     "Business-bank readiness checklist",
