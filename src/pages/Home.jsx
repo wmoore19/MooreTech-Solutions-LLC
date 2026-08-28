@@ -1,17 +1,24 @@
 import {
   ArrowRight,
+  BriefcaseBusiness,
   Check,
-  ClipboardCheck,
   ExternalLink,
   Layers3,
   MessageSquareText,
-  MoveRight,
   Puzzle,
+  Rocket,
+  WalletCards,
   Wrench,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoUrl from "@/assets/mooretech-logo.webp";
-import { businessLaunch, company, customBuildEmail, ironline } from "@/siteData";
+import { company, customBuildEmail, productPortfolio } from "@/siteData";
+
+const productIcons = {
+  office: BriefcaseBusiness,
+  budget: WalletCards,
+  launch: Rocket,
+};
 
 const principles = [
   {
@@ -22,7 +29,7 @@ const principles = [
   {
     icon: Layers3,
     title: "Built to grow deliberately",
-    text: "Products and custom systems are structured so improvements can be added without needless complexity.",
+    text: "Each product has a clear job, so improvements can be added without turning it into a bloated all-in-one.",
   },
   {
     icon: Puzzle,
@@ -38,11 +45,11 @@ export default function Home() {
         <div className="hero-grid" aria-hidden="true" />
         <div className="shell hero-layout">
           <div className="hero-copy">
-            <span className="eyebrow">Software for real operations</span>
-            <h1>Practical technology, built around how work actually gets done.</h1>
+            <span className="eyebrow">The company behind Ironline</span>
+            <h1>Practical software for work, money, and a new business.</h1>
             <p>
-              MooreTech Solutions LLC builds straightforward software products and
-              carefully scoped custom systems for owner-led teams.
+              MooreTech Solutions LLC builds focused products that make everyday
+              operations easier to understand, run, and improve.
             </p>
             <div className="hero-actions">
               <Link
@@ -52,7 +59,7 @@ export default function Home() {
                 data-track-placement="home_hero"
                 data-track-destination="products"
               >
-                Explore Ironline Office
+                Explore all three products
                 <ArrowRight size={18} />
               </Link>
               <Link
@@ -68,175 +75,103 @@ export default function Home() {
             <div className="hero-meta" aria-label="Company details">
               <span>Established 2026</span>
               <span>{company.location}</span>
-              <span>Text-first contact available</span>
+              <span>{company.serviceArea}</span>
             </div>
           </div>
 
           <div className="brand-panel">
             <div className="brand-panel-status" aria-hidden="true">
-              <span>MT // operations matrix</span>
+              <span>MT // Ironline product network</span>
               <span>Online</span>
             </div>
             <div className="brand-panel-glow" aria-hidden="true" />
             <img src={logoUrl} alt="MooreTech Solutions LLC" />
             <div className="brand-panel-list">
-              <div>
-                <span>01</span>
-                <p>Software products</p>
-              </div>
-              <div>
-                <span>02</span>
-                <p>Custom operational tools</p>
-              </div>
-              <div>
-                <span>03</span>
-                <p>Integrations and automation</p>
-              </div>
+              {productPortfolio.map((product) => (
+                <div key={product.key}>
+                  <span>{product.number}</span>
+                  <p>{product.name}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section portfolio-section">
         <div className="shell">
           <div className="section-heading split-heading">
             <div>
-              <span className="eyebrow">{ironline.eyebrow}</span>
-              <h2>One clear workflow for service work.</h2>
+              <span className="eyebrow">The Ironline product family</span>
+              <h2>Three products. Three clear jobs.</h2>
             </div>
             <p>
-              Ironline Office is designed to help owner-led service teams organize
-              everyday work without taking on enterprise-level complexity.
+              Each Ironline product solves a distinct problem with its own focused
+              website, workflow, and next step.
             </p>
           </div>
 
-          <article className="product-feature ironline-showcase">
-            <div className="product-copy">
-              <div className="product-badge">Available now</div>
-              <h3>{ironline.name}</h3>
-              <p>{ironline.summary}</p>
-              <div className="workflow" aria-label="Ironline Office core workflow">
-                {ironline.workflow.map((step, index) => (
-                  <div key={step}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <strong>{step}</strong>
-                    {index < ironline.workflow.length - 1 && <MoveRight aria-hidden="true" />}
+          <div className="portfolio-grid">
+            {productPortfolio.map((product) => {
+              const Icon = productIcons[product.key];
+              return (
+                <article
+                  className={"portfolio-card portfolio-" + product.key}
+                  key={product.key}
+                >
+                  <div className="portfolio-card-head">
+                    <div className="product-icon" aria-hidden="true">
+                      <Icon />
+                    </div>
+                    <span className="product-status">{product.status}</span>
                   </div>
-                ))}
-              </div>
-              <div className="inline-actions">
-                <a
-                  className="button"
-                  href={ironline.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  data-track-event="ironline_website_clicked"
-                  data-track-placement="home_product"
-                  data-track-destination="ironline"
-                >
-                  Visit Ironline Office
-                  <ExternalLink size={17} />
-                </a>
-                <Link
-                  className="text-link"
-                  to="/products"
-                  data-track-event="company_product_clicked"
-                  data-track-placement="home_product"
-                  data-track-destination="products"
-                >
-                  Product overview <ArrowRight size={16} />
-                </Link>
-              </div>
-            </div>
-            <div className="product-side ironline-product-side">
-              <a
-                className="ironline-preview-link"
-                href={ironline.url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Visit the Ironline Office website"
-                data-track-event="ironline_website_clicked"
-                data-track-placement="home_product_preview"
-                data-track-destination="ironline"
-              >
-                <img
-                  src={ironline.socialImageUrl}
-                  alt="Ironline Office product preview"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-              <span className="small-label">Designed around</span>
-              <ul className="check-list">
-                <li><Check /> Customers and requests</li>
-                <li><Check /> Estimates and approvals</li>
-                <li><Check /> Scheduling and field work</li>
-                <li><Check /> Invoicing and payments</li>
-                <li><Check /> Follow-up and visibility</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="shell">
-          <div className="section-heading split-heading">
-            <div>
-              <span className="eyebrow">{businessLaunch.eyebrow}</span>
-              <h2>Start an Arkansas LLC with a clearer setup path.</h2>
-            </div>
-            <p>
-              A fixed-fee administrative launch package for a straightforward,
-              one-owner Arkansas LLC—plus a practical operating handoff.
-            </p>
+                  <span className="portfolio-kicker">
+                    {product.number} / {product.category}
+                  </span>
+                  <h3>{product.name}</h3>
+                  <p className="product-tagline">{product.tagline}</p>
+                  <p className="product-summary">{product.summary}</p>
+                  <ul className="portfolio-list">
+                    {product.highlights.map((item) => (
+                      <li key={item}>
+                        <Check />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="portfolio-actions">
+                    <a
+                      className="text-link"
+                      href={product.primaryUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-track-event="ironline_product_clicked"
+                      data-track-placement="home_portfolio"
+                      data-track-destination={product.key}
+                    >
+                      {product.primaryLabel}
+                      <ExternalLink size={16} />
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
-          <article className="product-feature">
-            <div className="product-copy">
-              <div className="product-badge">{businessLaunch.priceLabel} + outside fees</div>
-              <h3>{businessLaunch.name}</h3>
-              <p>{businessLaunch.summary}</p>
-              <ul className="check-list">
-                {businessLaunch.included.map((item) => (
-                  <li key={item}><Check /> {item}</li>
-                ))}
-              </ul>
-              <div className="inline-actions">
-                <Link
-                  className="button"
-                  to={businessLaunch.url}
-                  data-track-event="business_launch_clicked"
-                  data-track-placement="home_business_launch"
-                  data-track-destination="business_launch"
-                >
-                  See Ironline Launch <ArrowRight size={18} />
-                </Link>
-              </div>
-            </div>
-            <div className="product-side">
-              <ClipboardCheck size={38} />
-              <span className="small-label">Designed for a narrow, clear fit</span>
-              <ul className="check-list">
-                <li><Check /> One adult owner</li>
-                <li><Check /> Arkansas domestic LLC</li>
-                <li><Check /> Ordinary, non-regulated activity</li>
-                <li><Check /> Client types, attests, submits, and pays official filings</li>
-              </ul>
-              <p>
-                Legal, tax, accounting, registered-agent, bookkeeping, nonprofit,
-                multi-member, and regulated-entity services are not included.
-              </p>
-            </div>
-          </article>
+          <div className="portfolio-note">
+            <span>IRONLINE // A MOORETECH SOLUTIONS LLC PRODUCT FAMILY</span>
+            <Link to="/products">
+              Compare the products <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
       <section className="section section-soft">
         <div className="shell">
-          <div className="section-heading centered-heading">
+          <div className="section-heading">
             <span className="eyebrow">Selective custom work</span>
-            <h2>When off-the-shelf software does not quite fit.</h2>
+            <h2>When an off-the-shelf product does not fit.</h2>
             <p>
               MooreTech accepts a limited number of custom build requests for
               focused operational problems with a clear business purpose.
@@ -246,12 +181,12 @@ export default function Home() {
             <article>
               <Wrench />
               <h3>Internal tools</h3>
-              <p>Simple dashboards, workflow tools, and operational systems built around a defined process.</p>
+              <p>Dashboards, workflow tools, and operational systems built around one defined process.</p>
             </article>
             <article>
               <Layers3 />
-              <h3>Portals and lightweight apps</h3>
-              <p>Purpose-built experiences for customers, teams, or partners when a generic tool creates friction.</p>
+              <h3>Portals and focused apps</h3>
+              <p>Purpose-built customer, team, or partner experiences where a generic tool creates friction.</p>
             </article>
             <article>
               <Puzzle />
@@ -285,7 +220,7 @@ export default function Home() {
       <section className="section">
         <div className="shell">
           <div className="section-heading">
-            <span className="eyebrow">How we think</span>
+            <span className="eyebrow">How we build</span>
             <h2>Software should reduce work, not create another job.</h2>
           </div>
           <div className="principle-grid">
