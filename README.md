@@ -11,7 +11,7 @@ The official company website for [MooreTech Solutions LLC](https://mooretech-sol
 
 - Company overview and leadership
 - Product portfolio, beginning with Ironline Office
-- Arkansas Business Launch administrative setup service
+- Ironline Launch administrative setup service for straightforward Arkansas LLCs
 - Custom software request process and qualification guidance
 - Secure inquiry capture with administrator-only records
 - Careers and résumé submission information
