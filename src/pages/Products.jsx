@@ -1,7 +1,7 @@
 import { ArrowRight, Check, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageIntro from "@/components/site/PageIntro";
-import { ironline } from "@/siteData";
+import { businessLaunch, ironline } from "@/siteData";
 
 const fit = [
   "Owner-led service businesses",
@@ -16,7 +16,7 @@ export default function Products() {
       <PageIntro
         eyebrow="Products"
         title="Focused software for work that has to move."
-        description="We are building the MooreTech product portfolio deliberately. Ironline Office is our first public product."
+        description="MooreTech builds focused software and practical setup services deliberately. Each offer has a clear job, audience, and boundary."
       />
 
       <section className="section">
@@ -75,6 +75,46 @@ export default function Products() {
       </section>
 
       <section className="section section-soft">
+        <div className="shell product-page-card">
+          <div className="product-page-main">
+            <span className="product-badge">{businessLaunch.eyebrow}</span>
+            <h2>{businessLaunch.name}</h2>
+            <p className="lead">{businessLaunch.summary}</p>
+            <p className="lead">
+              <strong>{businessLaunch.priceLabel}</strong> for the MooreTech service.
+              Government, licensing, banking, registered-agent, and other third-party
+              fees are paid separately by the owner.
+            </p>
+            <div className="inline-actions">
+              <Link
+                className="button"
+                to={businessLaunch.url}
+                data-track-event="business_launch_clicked"
+                data-track-placement="products_business_launch"
+                data-track-destination="business_launch"
+              >
+                View Arkansas Business Launch <ArrowRight size={17} />
+              </Link>
+            </div>
+          </div>
+
+          <aside className="fit-card">
+            <span className="small-label">Included in the fixed package</span>
+            <ul className="check-list">
+              {businessLaunch.included.map((item) => (
+                <li key={item}><Check /> {item}</li>
+              ))}
+            </ul>
+            <p className="fit-note">
+              Limited to straightforward one-owner Arkansas LLCs. This is
+              administrative and technology help—not legal, tax, accounting,
+              registered-agent, bookkeeping, or ongoing compliance service.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="shell product-proof">
           <div className="product-proof-visual">
             <img src={ironline.socialImageUrl} alt="Ironline Office product preview" />
