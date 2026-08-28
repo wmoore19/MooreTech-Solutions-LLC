@@ -24,17 +24,17 @@ const included = [
   {
     icon: FileCheck2,
     title: "Arkansas filing guidance",
-    text: "Administrative help checking name availability, organizing the owner’s information, and completing the state filing for the owner to review and approve.",
+    text: "Administrative help checking Arkansas name availability and preparing a filing checklist. The client types, reviews, signs, attests, submits, and pays on the official state site.",
   },
   {
     icon: Landmark,
     title: "EIN and bank readiness",
-    text: "A free IRS EIN walkthrough plus a clean checklist of formation records, identification, and ownership details commonly requested by business banks.",
+    text: "A guided visit to the free official IRS EIN site plus a bank-readiness checklist. The client enters all SSN, responsible-party, identity, password, MFA, and bank information.",
   },
   {
     icon: ReceiptText,
     title: "Sales-tax setup, when applicable",
-    text: "Help identifying the Arkansas registration path and organizing the information needed for ATAP. The owner remains responsible for tax decisions, rates, collection, and returns.",
+    text: "Help locating the Arkansas registration path and organizing a checklist for ATAP. The client chooses every tax answer and types, attests, submits, and pays on the official site.",
   },
   {
     icon: Banknote,
@@ -62,12 +62,118 @@ const steps = [
   {
     number: "03",
     title: "Guided setup",
-    text: "We organize the information and walk through the applicable government systems. The owner reviews and approves every filing before it is submitted.",
+    text: "MooreTech points to official sites and explains the administrative sequence. The client types, reviews, signs, attests, submits, and pays every filing or registration.",
   },
   {
     number: "04",
     title: "Handoff and training",
-    text: "The owner receives a launch checklist, document folder plan, deadline reminders to create, and an Ironline QuickStart session if selected.",
+    text: "The client receives a launch checklist, document-folder plan, deadlines to place on the client’s own calendar, and an Ironline QuickStart session if selected.",
+  },
+];
+
+const responsibilityRows = [
+  {
+    topic: "Business choices",
+    mooreTech: "Provide plain-language checklists, public links, and general descriptions of the available administrative paths.",
+    client: "Choose the entity, legal name, registered agent, ownership, tax treatment, licenses, and every answer placed on a form.",
+  },
+  {
+    topic: "Official filings",
+    mooreTech: "Guide navigation on official sites and point out obvious missing fields or clerical mismatches in client-entered information.",
+    client: "Type, review, sign, attest, submit, and pay for every filing, registration, permit, and government charge.",
+  },
+  {
+    topic: "Sensitive access",
+    mooreTech: "Use client-controlled sessions and avoid collecting sensitive credentials or identity information.",
+    client: "Keep sole control of SSNs, passwords, MFA codes, banking logins, bank identity checks, and government-account credentials.",
+  },
+  {
+    topic: "Ironline setup",
+    mooreTech: "Configure and test Ironline with client-approved business data, then provide the included training.",
+    client: "Approve the data, complete account-security steps, and decide how the business will use the system.",
+  },
+  {
+    topic: "After launch",
+    mooreTech: "Deliver a handoff checklist and identify known deadlines as reminders, not ongoing compliance monitoring.",
+    client: "Handle ongoing taxes, sales-tax returns, licenses, Arkansas franchise tax, records, insurance, banking, and professional advice.",
+  },
+];
+
+const timeAllocation = [
+  { task: "Intake, name check, and checklist", minutes: 30 },
+  { task: "Official-site navigation and bank readiness", minutes: 60 },
+  { task: "Ironline configuration and test", minutes: 60 },
+  { task: "Client training", minutes: 45 },
+  { task: "Post-session follow-up", minutes: 20 },
+  { task: "Routine message responses", minutes: 25 },
+];
+
+const serviceMap = [
+  {
+    label: "MooreTech direct",
+    note: "Implementation work MooreTech can perform under a defined written scope.",
+    items: [
+      "Ironline Launch and its included Ironline QuickStart",
+      "Ironline Office configuration and training",
+      "Websites, forms, domains, business email, and analytics",
+      "Workflow automation, integrations, and custom builds",
+      "Lead-routing and growth systems",
+      "Technology access, backups, and security setup",
+      "Defined support blocks or retainers",
+    ],
+  },
+  {
+    label: "MooreTech-guided; client-controlled",
+    note: "MooreTech can guide the screen and sequence while the client keeps control.",
+    items: [
+      "Official government websites and filing portals",
+      "Bank and payment-processor onboarding",
+      "Third-party software onboarding",
+      "Identity checks, credentials, MFA, attestations, submissions, and payments",
+    ],
+  },
+  {
+    label: "Licensed or outside specialist",
+    note: "The client contracts directly with the appropriate independent provider.",
+    items: [
+      "Legal advice, contracts, trademarks, and registered-agent service",
+      "Tax advice, tax returns, payroll, and audit representation",
+      "Insurance, loans, lending decisions, and credit advice",
+      "Regulated, licensed, or professional-entity work",
+    ],
+  },
+];
+
+const recommendedStack = [
+  {
+    area: "Operations",
+    tool: "Ironline Office",
+    note: "Primary system for requests, customers, estimates, schedules, invoices, and follow-up.",
+  },
+  {
+    area: "Payments",
+    tool: "Square Free",
+    note: "A practical starting payment rail; the client owns the account and processor relationship.",
+  },
+  {
+    area: "Basic bookkeeping",
+    tool: "Wave Starter",
+    note: "A basic recordkeeping starting point; tax and accounting decisions stay with the client and advisor.",
+  },
+  {
+    area: "Business banking",
+    tool: "Local bank or Bluevine / Relay",
+    note: "Compare fees, cash-deposit needs, support, eligibility, security, and software connections.",
+  },
+  {
+    area: "Email and files",
+    tool: "Google Workspace or Microsoft 365",
+    note: "Professional email, shared files, calendars, account controls, and recovery options.",
+  },
+  {
+    area: "Advisors",
+    tool: "ASBTDC + attorney / CPA / EA",
+    note: "Business education plus licensed or credentialed help when a decision exceeds MooreTech’s scope.",
   },
 ];
 
@@ -85,9 +191,9 @@ export default function BusinessLaunch() {
   return (
     <>
       <PageIntro
-        eyebrow="Arkansas Business Launch"
-        title="A guided start for a straightforward Arkansas LLC."
-        description="MooreTech provides administrative and technology help for a first-time owner who wants a clear setup path, organized records, and a working business system—without pretending the paperwork is legal or tax advice."
+        eyebrow="a MooreTech Solutions LLC service"
+        title="Ironline Launch: a guided administrative start for a straightforward Arkansas LLC."
+        description="Ironline Launch makes MooreTech the implementation partner for a clear setup path, organized records, and a working business system while the client controls every official filing, identity step, and professional decision."
       />
 
       <section className="section launch-overview">
@@ -96,10 +202,10 @@ export default function BusinessLaunch() {
             <span className="eyebrow">One clear package</span>
             <h2>Start organized for $200.</h2>
             <p className="lead">
-              This fixed-fee service is designed for one-owner Arkansas LLCs with a
-              straightforward business activity. MooreTech keeps the steps visible,
-              helps with the administrative work, and leaves every owner decision
-              with the client.
+              Ironline Launch is a fixed-fee MooreTech Solutions LLC service for a
+              straightforward, one-owner Arkansas LLC. MooreTech provides guided
+              administrative and technology help; the client makes every decision
+              and completes every official filing.
             </p>
             <div className="inline-actions">
               <a
@@ -124,12 +230,12 @@ export default function BusinessLaunch() {
           </div>
 
           <aside className="launch-price-card">
-            <span className="small-label">MooreTech service fee</span>
+            <span className="small-label">Ironline Launch service fee</span>
             <div className="launch-price">
               <span>$</span>
               <strong>{businessLaunch.price}</strong>
             </div>
-            <p>One time, for the included administrative and technology services.</p>
+            <p>One time, for up to four total MooreTech labor hours allocated across the listed tasks.</p>
             <div className="launch-price-rule" />
             <p>
               <strong>Paid separately by the owner:</strong> Arkansas filing fees,
@@ -172,9 +278,47 @@ export default function BusinessLaunch() {
 
       <section className="section">
         <div className="shell">
+          <div className="section-heading split-heading">
+            <div>
+              <span className="eyebrow">Responsibility boundary</span>
+              <h2>MooreTech can guide. The client must decide and act.</h2>
+            </div>
+            <p>
+              These boundaries protect the client’s identity, keep official
+              attestations truthful, and prevent administrative help from being
+              mistaken for legal, tax, accounting, banking, or registered-agent work.
+            </p>
+          </div>
+
+          <div className="launch-table-wrap">
+            <table className="launch-responsibility-table">
+              <caption>Ironline Launch responsibility split</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Area</th>
+                  <th scope="col">MooreTech can</th>
+                  <th scope="col">Client must</th>
+                </tr>
+              </thead>
+              <tbody>
+                {responsibilityRows.map((row) => (
+                  <tr key={row.topic}>
+                    <th scope="row">{row.topic}</th>
+                    <td>{row.mooreTech}</td>
+                    <td>{row.client}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="shell">
           <div className="section-heading">
             <span className="eyebrow">How the work moves</span>
-            <h2>Four milestones, with owner approval at every filing step.</h2>
+            <h2>Four milestones, with client control at every official step.</h2>
           </div>
 
           <div className="launch-steps">
@@ -187,6 +331,46 @@ export default function BusinessLaunch() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="shell">
+          <div className="section-heading split-heading">
+            <div>
+              <span className="eyebrow">Four-hour package cap</span>
+              <h2>The included time is allocated before work begins.</h2>
+            </div>
+            <p>
+              The six allocations total 240 minutes. Unused time is not cash value,
+              and MooreTech will not move into paid extra work without advance written
+              client approval.
+            </p>
+          </div>
+
+          <div className="launch-allocation-grid">
+            {timeAllocation.map((item) => (
+              <article key={item.task}>
+                <strong>{item.minutes}</strong>
+                <span>minutes</span>
+                <p>{item.task}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="launch-support-rules">
+            <div>
+              <span className="small-label">Support window</span>
+              <h3>Monday–Friday, 9:00 a.m.–5:00 p.m. Central</h3>
+              <p>Federal holidays are excluded. The normal response target is within two business days.</p>
+            </div>
+            <ul>
+              <li>No emergency, same-day, evening, weekend, or holiday support.</li>
+              <li>Extra work is $50 per hour, billed in 15-minute increments, only after advance written approval.</li>
+              <li>There is no automatic overtime and no work beyond the package cap without that approval.</li>
+              <li>Correcting MooreTech’s own in-scope error is not extra work, carries no added charge, and does not reduce the client’s included time.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -206,7 +390,7 @@ export default function BusinessLaunch() {
               <li><Check /> Arkansas domestic LLC</li>
               <li><Check /> Straightforward, non-regulated activity</li>
               <li><Check /> Owner can provide accurate information and valid ID</li>
-              <li><Check /> Owner agrees to review every submission</li>
+              <li><Check /> Client agrees to type, sign, attest, submit, and pay official filings</li>
             </ul>
           </div>
 
@@ -222,6 +406,54 @@ export default function BusinessLaunch() {
               {exclusions.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </aside>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="shell">
+          <div className="section-heading split-heading">
+            <div>
+              <span className="eyebrow">Implementation partner</span>
+              <h2>One MooreTech relationship, with clear professional lanes.</h2>
+            </div>
+            <p>
+              MooreTech can implement the operating technology and coordinate a
+              clean handoff. Every direct service below has its own written scope and
+              price except the Ironline QuickStart already included in Ironline Launch.
+            </p>
+          </div>
+
+          <div className="launch-service-map">
+            {serviceMap.map((lane) => (
+              <article key={lane.label}>
+                <span className="small-label">{lane.label}</span>
+                <p>{lane.note}</p>
+                <ul>
+                  {lane.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+
+          <div className="section-heading launch-stack-heading">
+            <span className="eyebrow">Recommended starting stack</span>
+            <h2>Simple tools, chosen around the actual workflow.</h2>
+          </div>
+          <div className="launch-stack-grid">
+            {recommendedStack.map((item) => (
+              <article key={item.area}>
+                <span>{item.area}</span>
+                <h3>{item.tool}</h3>
+                <p>{item.note}</p>
+              </article>
+            ))}
+          </div>
+          <p className="launch-vendor-note">
+            Outside providers contract directly with the client. Prices, eligibility,
+            features, and terms can change. MooreTech will disclose in writing any
+            referral, affiliate, reseller, or other compensation it may receive before
+            a related recommendation or purchase.
+          </p>
         </div>
       </section>
 
@@ -260,7 +492,7 @@ export default function BusinessLaunch() {
           <InquiryForm
             defaultType="business_launch"
             showType={false}
-            title="Arkansas Business Launch request"
+            title="Ironline Launch request"
             description="Share the proposed business activity, owner count, Arkansas city or county, and whether you have already filed anything."
           />
         </div>
