@@ -13,6 +13,11 @@ const pageMeta = {
     description:
       "Explore Ironline Office, MooreTech's first public product for owner-led service teams managing customers, work, schedules, invoices, and follow-up.",
   },
+  "/business-launch": {
+    title: "Arkansas LLC Setup Help | MooreTech Business Launch",
+    description:
+      "Get guided administrative and technology setup for a straightforward one-owner Arkansas LLC for $200 plus government and third-party fees.",
+  },
   "/lead-generation": {
     title: "Commercial Lead Generation | MooreTech Solutions LLC",
     description:
