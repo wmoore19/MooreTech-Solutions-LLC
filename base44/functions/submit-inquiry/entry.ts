@@ -1,7 +1,7 @@
 import { createClientFromRequest } from "npm:@base44/sdk";
 
 const ADMIN_EMAIL = "admin@ironlineoffice.com";
-const VALID_TYPES = new Set(["custom_build", "ironline_office", "partnership", "general"]);
+const VALID_TYPES = new Set(["custom_build", "ironline_office", "business_launch", "partnership", "general"]);
 const VALID_CONTACT = new Set(["email", "text", "call"]);
 const VALID_STAGES = new Set(["exploring", "comparing", "ready_to_scope", "urgent_need", "not_applicable"]);
 const VALID_TIMEFRAMES = new Set(["flexible", "one_to_three_months", "three_to_six_months", "not_sure", "not_applicable"]);
@@ -101,6 +101,7 @@ Deno.serve(async (req) => {
     const labels: Record<string, string> = {
       custom_build: "Custom build",
       ironline_office: "Ironline Office",
+      business_launch: "Arkansas Business Launch",
       partnership: "Partnership",
       general: "General"
     };
