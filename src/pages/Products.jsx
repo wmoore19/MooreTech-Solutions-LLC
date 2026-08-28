@@ -15,7 +15,7 @@ export default function Products() {
     <>
       <PageIntro
         eyebrow="Products"
-        title="Focused software for work that has to move."
+        title="Focused technology and implementation services."
         description="MooreTech builds focused software and practical setup services deliberately. Each offer has a clear job, audience, and boundary."
       />
 
