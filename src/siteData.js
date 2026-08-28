@@ -20,6 +20,7 @@ export const company = {
 
 export const navigation = [
   { label: "Products", to: "/products" },
+  { label: "Business Launch", to: "/business-launch" },
   { label: "Lead Generation", to: "/lead-generation" },
   { label: "Custom Builds", to: "/custom-builds" },
   { label: "About", to: "/about" },
@@ -35,6 +36,24 @@ export const ironline = {
   summary:
     "A practical business-management platform designed for owner-led service teams that want one clear place to organize customers, work, schedules, invoices, and follow-up.",
   workflow: ["Request", "Estimate", "Schedule", "Job", "Invoice", "Payment"],
+};
+
+export const businessLaunch = {
+  name: "Arkansas Business Launch",
+  url: "/business-launch",
+  externalUrl: "",
+  price: "200",
+  priceLabel: "$200 one time",
+  eyebrow: "Administrative setup service",
+  summary:
+    "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, with a clear handoff and optional Ironline QuickStart.",
+  included: [
+    "Arkansas LLC filing guidance",
+    "Free EIN walkthrough",
+    "Sales-tax registration setup when applicable",
+    "Business-bank readiness checklist",
+    "Ironline QuickStart and one training session",
+  ],
 };
 
 export const leadership = [
