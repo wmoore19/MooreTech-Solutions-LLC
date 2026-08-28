@@ -117,6 +117,7 @@ export default function Home() {
               return (
                 <article
                   className={"portfolio-card portfolio-" + product.key}
+                  data-product={product.number}
                   key={product.key}
                 >
                   <div className="portfolio-card-head">
