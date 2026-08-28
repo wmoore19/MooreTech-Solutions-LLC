@@ -101,7 +101,7 @@ Deno.serve(async (req) => {
     const labels: Record<string, string> = {
       custom_build: "Custom build",
       ironline_office: "Ironline Office",
-      business_launch: "Arkansas Business Launch",
+      business_launch: "Ironline Launch",
       partnership: "Partnership",
       general: "General"
     };
