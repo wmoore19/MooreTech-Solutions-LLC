@@ -27,7 +27,7 @@ export default function SiteFooter() {
         <div>
           <h2>Explore</h2>
           <Link to="/products">Ironline Office</Link>
-          <Link to="/business-launch">Arkansas Business Launch</Link>
+          <Link to="/business-launch">Ironline Launch</Link>
           <Link to="/custom-builds">Custom builds</Link>
           <Link to="/about">About MooreTech</Link>
           <Link to="/careers">Careers</Link>
