@@ -44,7 +44,7 @@ export const businessLaunch = {
   externalUrl: "",
   price: "200",
   priceLabel: "$200 one time",
-  eyebrow: "A MooreTech Solutions LLC service",
+  eyebrow: "a MooreTech Solutions LLC service",
   summary:
     "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, with a defined four-hour service cap and optional Ironline QuickStart.",
   included: [
