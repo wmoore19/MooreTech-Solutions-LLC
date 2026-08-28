@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Check,
+  ClipboardCheck,
   ExternalLink,
   Layers3,
   MessageSquareText,
@@ -10,7 +11,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoUrl from "@/assets/mooretech-logo.webp";
-import { company, customBuildEmail, ironline } from "@/siteData";
+import { businessLaunch, company, customBuildEmail, ironline } from "@/siteData";
 
 const principles = [
   {
@@ -173,6 +174,59 @@ export default function Home() {
                 <li><Check /> Invoicing and payments</li>
                 <li><Check /> Follow-up and visibility</li>
               </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="shell">
+          <div className="section-heading split-heading">
+            <div>
+              <span className="eyebrow">{businessLaunch.eyebrow}</span>
+              <h2>Start an Arkansas LLC with a clearer setup path.</h2>
+            </div>
+            <p>
+              A fixed-fee administrative launch package for a straightforward,
+              one-owner Arkansas LLC—plus a practical operating handoff.
+            </p>
+          </div>
+
+          <article className="product-feature">
+            <div className="product-copy">
+              <div className="product-badge">{businessLaunch.priceLabel} + outside fees</div>
+              <h3>{businessLaunch.name}</h3>
+              <p>{businessLaunch.summary}</p>
+              <ul className="check-list">
+                {businessLaunch.included.map((item) => (
+                  <li key={item}><Check /> {item}</li>
+                ))}
+              </ul>
+              <div className="inline-actions">
+                <Link
+                  className="button"
+                  to={businessLaunch.url}
+                  data-track-event="business_launch_clicked"
+                  data-track-placement="home_business_launch"
+                  data-track-destination="business_launch"
+                >
+                  See the launch package <ArrowRight size={18} />
+                </Link>
+              </div>
+            </div>
+            <div className="product-side">
+              <ClipboardCheck size={38} />
+              <span className="small-label">Designed for a narrow, clear fit</span>
+              <ul className="check-list">
+                <li><Check /> One adult owner</li>
+                <li><Check /> Arkansas domestic LLC</li>
+                <li><Check /> Ordinary, non-regulated activity</li>
+                <li><Check /> Owner reviews every filing</li>
+              </ul>
+              <p>
+                Legal, tax, accounting, registered-agent, bookkeeping, nonprofit,
+                multi-member, and regulated-entity services are not included.
+              </p>
             </div>
           </article>
         </div>
