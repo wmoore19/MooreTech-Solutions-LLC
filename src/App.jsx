@@ -7,6 +7,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import SimpleNotFound from "@/lib/SimpleNotFound";
 import PipelineApp from "@/pipeline/PipelineApp";
 import About from "@/pages/About";
+import BusinessLaunch from "@/pages/BusinessLaunch";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
 import CustomBuilds from "@/pages/CustomBuilds";
@@ -49,6 +50,7 @@ function AppRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/business-launch" element={<BusinessLaunch />} />
           <Route path="/custom-builds" element={<CustomBuilds />} />
           <Route path="/lead-generation" element={<LeadGeneration />} />
           <Route path="/about" element={<About />} />
