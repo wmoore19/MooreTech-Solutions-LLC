@@ -3,7 +3,7 @@ export const company = {
   legalName: "MooreTech Solutions LLC",
   siteUrl: "https://mooretech-solutions-llc.base44.app",
   siteDescription:
-    "Practical software products and carefully scoped custom systems for real-world operations.",
+    "The company behind Ironline Office, Ironline Budget, Ironline Launch, and carefully scoped custom software.",
   socialImageUrl:
     "https://mooretech-solutions-llc.base44.app/mooretech-logo.webp",
   founded: "2026",
@@ -20,33 +20,74 @@ export const company = {
 
 export const navigation = [
   { label: "Products", to: "/products" },
-  { label: "Ironline Launch", to: "/business-launch" },
-  { label: "Lead Generation", to: "/lead-generation" },
   { label: "Custom Builds", to: "/custom-builds" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
 
 export const ironline = {
+  key: "office",
+  number: "01",
   name: "Ironline Office",
+  category: "Service operations",
+  status: "Available now",
+  tagline: "Run the work from first request through payment.",
   url: "https://ironlineoffice.com",
   trialUrl: "https://ironlineoffice.com/register",
   socialImageUrl: "https://ironlineoffice.com/brand/ironline-social-card.png",
-  eyebrow: "Our first product",
+  eyebrow: "Service operations",
   summary:
-    "A practical business-management platform designed for owner-led service teams that want one clear place to organize customers, work, schedules, invoices, and follow-up.",
+    "One connected operating system for owner-led service teams managing customers, estimates, schedules, field work, invoices, payments, inventory, and follow-up.",
+  highlights: [
+    "CRM through payment in one workflow",
+    "Mobile-ready office and field tools",
+    "Flat plans starting at $29 per month",
+  ],
   workflow: ["Request", "Estimate", "Schedule", "Job", "Invoice", "Payment"],
+  primaryLabel: "Visit Ironline Office",
+  secondaryLabel: "Start a 30-day trial",
+};
+
+export const ironlineBudget = {
+  key: "budget",
+  number: "02",
+  name: "Ironline Budget",
+  category: "Financial planning",
+  status: "Available now",
+  tagline: "Give every dollar a job—and see the line clearly.",
+  url: "https://ironlinebudget.com",
+  registerUrl: "https://ironlinebudget.com/register",
+  eyebrow: "Financial planning",
+  summary:
+    "A clear planning system for personal, family, and business money, with flexible envelopes, Safe to Spend, goals, paydays, tax reserves, and decision-ready reporting.",
+  highlights: [
+    "Personal, family, and business workspaces",
+    "Flexible envelopes and Safe to Spend",
+    "Goals, paydays, taxes, and reporting",
+  ],
+  primaryLabel: "Visit Ironline Budget",
+  secondaryLabel: "Create a workspace",
 };
 
 export const businessLaunch = {
+  key: "launch",
+  number: "03",
   name: "Ironline Launch",
+  category: "Business launch",
+  status: "Available now",
+  tagline: "Start the business, then leave with a system to run it.",
   url: "/business-launch",
-  externalUrl: "",
+  externalUrl: "https://ironlinelaunch.com",
   price: "200",
   priceLabel: "$200 one time",
-  eyebrow: "a MooreTech Solutions LLC service",
+  eyebrow: "Business launch",
   summary:
-    "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, with a defined four-hour service cap and optional Ironline QuickStart.",
+    "Guided administrative and technology setup for a straightforward, one-owner Arkansas LLC, including a defined launch sequence, business-bank readiness, an Ironline QuickStart, and training.",
+  highlights: [
+    "Guided Arkansas LLC and EIN sequence",
+    "Business-bank and tax-workflow readiness",
+    "Ironline QuickStart, test workflow, and training",
+  ],
   included: [
     "Official-site filing checklist and navigation",
     "Free EIN walkthrough",
@@ -54,7 +95,27 @@ export const businessLaunch = {
     "Business-bank readiness checklist",
     "Ironline QuickStart and one training session",
   ],
+  primaryLabel: "Visit Ironline Launch",
+  secondaryLabel: "Review scope and pricing",
 };
+
+export const productPortfolio = [
+  {
+    ...ironline,
+    primaryUrl: ironline.url,
+    secondaryUrl: ironline.trialUrl,
+  },
+  {
+    ...ironlineBudget,
+    primaryUrl: ironlineBudget.url,
+    secondaryUrl: ironlineBudget.registerUrl,
+  },
+  {
+    ...businessLaunch,
+    primaryUrl: businessLaunch.externalUrl,
+    secondaryUrl: businessLaunch.url,
+  },
+];
 
 export const leadership = [
   {
