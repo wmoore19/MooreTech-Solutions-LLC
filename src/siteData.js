@@ -50,7 +50,7 @@ export const businessLaunch = {
   included: [
     "Official-site filing checklist and navigation",
     "Free EIN walkthrough",
-    "Sales-tax registration setup when applicable",
+    "Client-controlled ATAP navigation when applicable",
     "Business-bank readiness checklist",
     "Ironline QuickStart and one training session",
   ],
