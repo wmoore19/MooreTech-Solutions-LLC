@@ -6,12 +6,12 @@ const pageMeta = {
   "/": {
     title: "MooreTech Solutions LLC | Practical Software & Custom Systems",
     description:
-      "MooreTech Solutions LLC builds Ironline Office, Ironline Budget, Ironline Launch, and carefully scoped custom software for real-world operations.",
+      "MooreTech Solutions LLC builds Ironline Office, Ironline Budget, Ironline Launch, Ironline Rentals, and carefully scoped custom software for real-world operations.",
   },
   "/products": {
     title: "Ironline Products | MooreTech Solutions LLC",
     description:
-      "Explore Ironline Office for service operations, Ironline Budget for financial planning, and Ironline Launch for guided Arkansas business setup.",
+      "Explore Ironline Office for service operations, Ironline Budget for financial planning, Ironline Launch for guided Arkansas business setup, and Ironline Rentals for property operations.",
   },
   "/business-launch": {
     title: "Ironline Launch | Arkansas LLC Setup Help",
@@ -41,7 +41,7 @@ const pageMeta = {
   "/contact": {
     title: "Contact MooreTech Solutions LLC | Text or Email",
     description:
-      "Contact MooreTech Solutions LLC about Ironline Office, Ironline Budget, Ironline Launch, custom software, partnerships, careers, or a company question.",
+      "Contact MooreTech Solutions LLC about Ironline Office, Ironline Budget, Ironline Launch, Ironline Rentals, custom software, partnerships, careers, or a company question.",
   },
   "/security": {
     title: "Security & Data Practices | MooreTech Solutions LLC",
