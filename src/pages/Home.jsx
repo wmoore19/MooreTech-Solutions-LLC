@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BriefcaseBusiness,
+  Building2,
   Check,
   ExternalLink,
   Layers3,
@@ -18,6 +19,7 @@ const productIcons = {
   office: BriefcaseBusiness,
   budget: WalletCards,
   launch: Rocket,
+  rentals: Building2,
 };
 
 const principles = [
@@ -46,7 +48,7 @@ export default function Home() {
         <div className="shell hero-layout">
           <div className="hero-copy">
             <span className="eyebrow">The company behind Ironline</span>
-            <h1>Practical software for work, money, and a new business.</h1>
+            <h1>Practical software for work, money, launches, and rentals.</h1>
             <p>
               MooreTech Solutions LLC builds focused products that make everyday
               operations easier to understand, run, and improve.
@@ -59,7 +61,7 @@ export default function Home() {
                 data-track-placement="home_hero"
                 data-track-destination="products"
               >
-                Explore all three products
+                Explore all four products
                 <ArrowRight size={18} />
               </Link>
               <Link
@@ -103,7 +105,7 @@ export default function Home() {
           <div className="section-heading split-heading">
             <div>
               <span className="eyebrow">The Ironline product family</span>
-              <h2>Three products. Three clear jobs.</h2>
+              <h2>Four products. Four clear jobs.</h2>
             </div>
             <p>
               Each Ironline product solves a distinct problem with its own focused
