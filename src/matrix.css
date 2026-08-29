@@ -1519,7 +1519,7 @@ p {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   padding: 1px;
   border: 1px solid var(--matrix-line-strong);
@@ -1584,6 +1584,10 @@ p {
 
 .portfolio-launch {
   --product-accent: #72d6b4;
+}
+
+.portfolio-rentals {
+  --product-accent: #9b8cff;
 }
 
 .portfolio-card-head {
