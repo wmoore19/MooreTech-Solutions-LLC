@@ -1,11 +1,11 @@
 export const company = {
   name: "MooreTech",
   legalName: "MooreTech Solutions LLC",
-  siteUrl: "https://mooretech-solutions-llc.base44.app",
+  siteUrl: "https://mooretechsolutionsllc.com",
   siteDescription:
-    "The company behind Ironline Office, Ironline Budget, Ironline Launch, and carefully scoped custom software.",
+    "The company behind Ironline Office, Ironline Budget, Ironline Launch, Ironline Rentals, and carefully scoped custom software.",
   socialImageUrl:
-    "https://mooretech-solutions-llc.base44.app/mooretech-logo.webp",
+    "https://mooretechsolutionsllc.com/mooretech-logo.webp",
   founded: "2026",
   location: "Northeast Arkansas",
   serviceArea: "Serving businesses nationally",
@@ -69,6 +69,27 @@ export const ironlineBudget = {
   secondaryLabel: "Create a workspace",
 };
 
+export const ironlineRentals = {
+  key: "rentals",
+  number: "04",
+  name: "Ironline Rentals",
+  category: "Rental operations",
+  status: "Private beta",
+  tagline: "Keep every property, lease, payment, and work order on one line.",
+  url: "https://ironline-rentals.base44.app",
+  registerUrl: "https://ironline-rentals.base44.app/register",
+  eyebrow: "Rental operations",
+  summary:
+    "Unit-based property management software for independent landlords and large rental communities, with portfolio oversight, leases, rent ledgers, maintenance, inspections, and resident workflows.",
+  highlights: [
+    "Landlord plans starting at $15 per month",
+    "Portfolio and community tiers that scale by unit count",
+    "One operational view from vacancy through renewal",
+  ],
+  primaryLabel: "Explore Ironline Rentals",
+  secondaryLabel: "Join the 30-day pilot",
+};
+
 export const businessLaunch = {
   key: "launch",
   number: "03",
@@ -114,6 +135,11 @@ export const productPortfolio = [
     ...businessLaunch,
     primaryUrl: businessLaunch.externalUrl,
     secondaryUrl: businessLaunch.url,
+  },
+  {
+    ...ironlineRentals,
+    primaryUrl: ironlineRentals.url,
+    secondaryUrl: ironlineRentals.registerUrl,
   },
 ];
 
