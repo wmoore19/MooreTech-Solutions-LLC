@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BriefcaseBusiness,
+  Building2,
   Check,
   ExternalLink,
   Rocket,
@@ -14,6 +15,7 @@ const productIcons = {
   office: BriefcaseBusiness,
   budget: WalletCards,
   launch: Rocket,
+  rentals: Building2,
 };
 
 function SecondaryAction({ product }) {
@@ -43,7 +45,7 @@ export default function Products() {
       <PageIntro
         eyebrow="Products"
         title="The Ironline product family."
-        description="Focused products for running service work, planning money, and launching a straightforward Arkansas business—with MooreTech Solutions LLC clearly behind each one."
+        description="Focused products for service operations, financial planning, guided business launch, and rental management—with MooreTech Solutions LLC clearly behind each one."
       />
 
       <section className="section products-portfolio">
@@ -99,7 +101,7 @@ export default function Products() {
 
           <div className="portfolio-note portfolio-note-large">
             <div>
-              <span>ONE OWNER // THREE FOCUSED PRODUCTS</span>
+              <span>ONE OWNER // FOUR FOCUSED PRODUCTS</span>
               <p>
                 MooreTech Solutions LLC owns and develops the Ironline product family.
                 Product details, account paths, policies, and support live on each
