@@ -1,14 +1,14 @@
 import { Github, Mail, MessageSquareText } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoUrl from "@/assets/mooretech-logo.webp";
-import { businessLaunch, company, ironline, ironlineBudget } from "@/siteData";
+import { businessLaunch, company, ironline, ironlineBudget, ironlineRentals } from "@/siteData";
 
 export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell footer-system" aria-hidden="true">
         <span>MooreTech systems online</span>
-        <span>Ironline Office / Budget / Launch</span>
+        <span>Ironline Office / Budget / Launch / Rentals</span>
       </div>
       <div className="shell footer-grid">
         <div className="footer-brand">
@@ -17,7 +17,7 @@ export default function SiteFooter() {
           </Link>
           <p>
             The company behind Ironline Office, Ironline Budget, Ironline Launch,
-            and carefully scoped custom systems.
+            Ironline Rentals, and carefully scoped custom systems.
           </p>
           <span className="footer-location">
             Established {company.founded} · {company.location} · {company.serviceArea}
@@ -29,6 +29,7 @@ export default function SiteFooter() {
           <a href={ironline.url} target="_blank" rel="noreferrer">Ironline Office</a>
           <a href={ironlineBudget.url} target="_blank" rel="noreferrer">Ironline Budget</a>
           <a href={businessLaunch.externalUrl} target="_blank" rel="noreferrer">Ironline Launch</a>
+          <a href={ironlineRentals.url} target="_blank" rel="noreferrer">Ironline Rentals</a>
           <Link to="/custom-builds">Custom builds</Link>
           <Link to="/about">About MooreTech</Link>
           <Link to="/careers">Careers</Link>
